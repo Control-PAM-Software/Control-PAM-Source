@@ -58,4 +58,55 @@ Este proyecto está desarrollado bajo el stack de **.NET 8.0** con arquitectura 
 3. Restaurar paquetes NuGet e iniciar la depuración (F5).
 
 ---
+
+## 🌳 Flujo de Trabajo (Git Flow)
+
+Para mantener la estabilidad de **CONTROL PAM**, utilizamos un sistema de ramas basado en funcionalidades. Ningún desarrollador debe realizar commits directamente sobre `main`.
+
+### Estructura de Ramas
+* **`main`**: Solo código estable y testeado. Es la rama de producción.
+* **`develop`**: Rama de integración. Aquí se unen todas las nuevas funcionalidades antes de pasar a main.
+* **`feature/nombre-tarea`**: Ramas temporales para desarrollar nuevas características o corregir errores.
+
+---
+
+### 🛠 Comandos Básicos y Ciclo de Vida
+
+Cada vez que comiences una nueva tarea, seguí este flujo:
+
+#### 1. Crear una nueva funcionalidad
+Primero, asegúrate de tener lo último del equipo y crea tu rama:
+```bash
+git checkout develop
+git pull origin develop
+git checkout -b feature/nombre-de-tu-tarea
+```
+
+#### 2. Guardar cambios (Commits)
+Realizá commits pequeños y descriptivos mientras trabajás:
+
+```bash
+git add nombre-de-archivo-modificado
+git commit -m "Explicación breve de lo que hiciste"
+git push origin feature/nombre-de-tu-tarea
+```
+
+#### 3. Integración (Merge)
+Una vez finalizada y testeada la tarea localmente:
+
+1. Subí tu rama a GitHub.
+2. Abrí un Pull Request (PR) desde GitHub hacia la rama develop.
+3. Una vez aprobado el PR, eliminá la rama feature/ para mantener el orden.
+
+#### 4. Actualizar tu rama con cambios de otros
+Si un compañero subió algo a develop y lo necesitás:
+
+```bash
+git checkout feature/nombre-de-tu-tarea
+git merge develop
+```
+
+> [!WARNING]
+> **Regla de Oro:** Nunca hagas push a main directamente. Los pasos a main solo se realizan mediante Pull Requests desde develop al finalizar un hito de versión (ej. v5.4.2).
+
 © 2026 Control PAM - Todos los derechos reservados.
