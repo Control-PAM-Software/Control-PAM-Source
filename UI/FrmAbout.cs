@@ -13,7 +13,8 @@ namespace Control
         private void LoadAppInfo()
         {
             // --- INFORMACIÓN AUTOMÁTICA ---
-            lblVersion.Text = $"Versión: {Application.ProductVersion}";
+            Version version = Assembly.GetExecutingAssembly().GetName().Version!;
+            lblVersion.Text = $"Versión: v{version.Major}.{version.Minor}.{version.Build}";
             lblCopyright.Text = $"© {DateTime.Now.Year} - Agustín Malfatto";
 
             // --- NOMBRE DE LA APP ---
