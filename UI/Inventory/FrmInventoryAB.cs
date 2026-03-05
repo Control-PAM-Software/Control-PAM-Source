@@ -121,7 +121,7 @@ namespace Control
 
                 try
                 {
-                    var lista = Functions.ReadAnexoFile(ruta, header, header.ArtCode.Name);
+                    var lista = Functions.ReadAnexoFile(ruta, header);
                     foreach (var item in lista)
                     {
                         dataGridView1.Rows.Add();
