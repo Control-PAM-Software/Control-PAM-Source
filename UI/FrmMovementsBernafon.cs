@@ -86,7 +86,7 @@ namespace Control
 
                     try
                     {
-                        var lista = Functions.ReadAnexoFile(ruta, header, header.ArtCode.Name, true);
+                        var lista = Functions.ReadAnexoFile(ruta, header, true);
 
                         if (lista == null)
                         {

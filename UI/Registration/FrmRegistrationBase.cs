@@ -34,6 +34,8 @@ namespace Control
         protected eProductLine productLine;
         protected string productName = "";
 
+        protected bool groupItems = true;
+
         public FrmRegistrationBase()
         {
             InitializeComponent();
@@ -111,7 +113,7 @@ namespace Control
             header.SerialNr.Name = ConfigMarca.ColumnSerialNumber.ToString();
             header.DueDate.Name = ConfigMarca.ColumnDueDate.ToString();
 
-            List<ItemAnexo>? itemsAnexo = Functions.ReadAnexo(clipboardText, header);
+            List<ItemAnexo>? itemsAnexo = Functions.ReadAnexo(clipboardText, header, false, groupItems);
 
             if (itemsAnexo == null)
             {
@@ -182,7 +184,7 @@ namespace Control
 
                     try
                     {
-                        var lista = Functions.ReadAnexoFile(ruta, header, header.ArtCode.Name);
+                        var lista = Functions.ReadAnexoFile(ruta, header, false, groupItems);
                         if (lista == null) return;
 
 
@@ -315,7 +317,7 @@ namespace Control
 
                 ItemAnexo? existingItem = items.FirstOrDefault(x => x.CodItem == code && x.SerialNumber == serialNum);
 
-                if (existingItem != null)
+                if (existingItem != null && groupItems)
                 {
                     existingItem.Quantity += 1;
                 }
@@ -382,7 +384,7 @@ namespace Control
 
                 ItemAnexo? existingItem = itemsReceived.FirstOrDefault(x => x.CodItem == code && x.SerialNumber == serialNum);
 
-                if (existingItem != null)
+                if (existingItem != null && groupItems)
                 {
                     if (int.TryParse(quantity, out quantityInt))
                     {
@@ -455,6 +457,8 @@ namespace Control
 
         private void showErrorsInDataGridView(ComparisonResult compareData)
         {
+            // Este listado nos permite recordar qué artículos ya pintamos para no volver a pintar en caso de que el listado no agrupe por código - serie - vencimiento.
+            List<MismatchedDetail> ArticulosYaPintados = new List<MismatchedDetail>();
 
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
@@ -469,6 +473,11 @@ namespace Control
 
                 if (mismatch != null)
                 {
+                    if (ArticulosYaPintados.Any(x => x.Expected.CodItem == codItem && x.Expected.SerialNumber == serialNumber))
+                        continue;
+
+                    ArticulosYaPintados.Add(mismatch);
+
                     row.DefaultCellStyle.BackColor = ColorTranslator.FromHtml(AppSettings.settings.ColorDifferences); // Mismatched general
 
                     // Opcional: marcar diferencias con tooltip
