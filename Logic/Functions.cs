@@ -34,7 +34,7 @@ namespace Control.Logic
         /// <param name="firstColumn">Primera columna que se espera encontrar.</param>
         /// <param name="movementsBernafon">Si el archivo pertenece a los movimientos de stock de Bernafon.</param>
         /// <returns>Retorna el listado de items anexo capturados del archivo.</returns>
-        public static List<ItemAnexo>? ReadAnexoFile(string ruta, Models.Entities.Headers header, string firstColumn = "Unidades", bool movementsBernafon = false)
+        public static List<ItemAnexo>? ReadAnexoFile(string ruta, Models.Entities.Headers header, bool movementsBernafon = false, bool groupItems = true)
         {
             try
             {
@@ -142,7 +142,7 @@ namespace Control.Logic
 
                                         ItemAnexo? itemExist = listItems.FirstOrDefault(x => x.CodItem == newItem.CodItem && x.SerialNumber == newItem.SerialNumber && x.DueDate == newItem.DueDate);
 
-                                        if (itemExist != null)
+                                        if (itemExist != null && groupItems)
                                         {
                                             itemExist.Quantity += quantity;
                                         }
@@ -189,7 +189,7 @@ namespace Control.Logic
 
                                         ItemAnexo? itemExist = listItems.FirstOrDefault(x => x.CodItem == newItem.CodItem && x.SerialNumber == newItem.SerialNumber && x.DueDate == newItem.DueDate);
 
-                                        if (itemExist != null)
+                                        if (itemExist != null && groupItems)
                                         {
                                             itemExist.Quantity += quantity;
                                         }
@@ -344,7 +344,7 @@ namespace Control.Logic
         }
 
         // Lectura de tabla copiada del portapapeles
-        public static List<ItemAnexo>? ReadAnexo(string anexo, Models.Entities.Headers headers, bool movementsBernafon = false)
+        public static List<ItemAnexo>? ReadAnexo(string anexo, Models.Entities.Headers headers, bool movementsBernafon = false, bool groupItems = true)
         {
             List<ItemAnexo> itemAnexos = new List<ItemAnexo>();
 
@@ -470,13 +470,13 @@ namespace Control.Logic
 
                         ItemAnexo? itemExisting = itemAnexos.FirstOrDefault(a => a.CodItem == itemAnexo.CodItem && a.SerialNumber == itemAnexo.SerialNumber && a.DueDate == itemAnexo.DueDate);
 
-                        if (itemExisting == null)
+                        if (itemExisting != null && groupItems)
                         {
-                            itemAnexos.Add(itemAnexo);
+                            itemExisting.Quantity += itemAnexo.Quantity;
                         }
                         else
                         {
-                            itemExisting.Quantity += itemAnexo.Quantity;
+                            itemAnexos.Add(itemAnexo);
                         }
 
 
