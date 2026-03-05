@@ -29,9 +29,8 @@ namespace Control
 
             // Contenido normal con viñetas
             rtbChangeset.SelectionFont = new Font("Segoe UI", 9F, FontStyle.Regular);
-            string myChangeset = "• Corrección de vencimiento al pegar anexo en ingreso Valija.\n\n" +
-                                 "• Corrección de nombre de columna al generar tabla Open Orange.\n\n" +
-                                 "• Se agrega numeración a las filas de las tablas.";
+            string myChangeset = "• Se agrega exportador Excel, Impresión y generador de Qr en Valijas AB.\n\n" +
+                                 "• Cambio en Valijas AB, ya no se agrupan unidades.\n\n";
 
             rtbChangeset.AppendText(myChangeset);
         }
