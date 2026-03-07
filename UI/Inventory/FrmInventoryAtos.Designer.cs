@@ -577,6 +577,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1207, 615);
             Controls.Add(tabControl);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FrmInventoryAtos";
             Text = "Inventario Atos";
             Load += FrmInventoryAtos_Load;
