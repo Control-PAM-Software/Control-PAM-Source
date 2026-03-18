@@ -47,6 +47,8 @@ namespace Control
 
             LoadGridViews();
             BtnTests.Visible = AppSettings.settings.Test;
+            btnConvertLP.Visible = false; // Se visualiza únicamente para Accesorios AB
+
             panelDiffAnexo.BackColor = ColorTranslator.FromHtml(AppSettings.settings.ColorDifferences);
             panelMissItemAnexo.BackColor = ColorTranslator.FromHtml(AppSettings.settings.ColorMissingItem);
 
@@ -94,7 +96,7 @@ namespace Control
         {
             throw new NotImplementedException();
         }
-        
+
         #endregion
 
 
@@ -579,6 +581,10 @@ namespace Control
 
         #endregion
 
+        protected virtual void btnConvertLP_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
 
         protected void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -864,48 +870,6 @@ namespace Control
                     }
                 }
             }
-
-            //using (FrmGenerateQr generateQr = new FrmGenerateQr())
-            //{
-            //    // Pasar el número de serie si hay selección
-            //    if (dataGridViewReceived.SelectedRows.Count != 0)
-            //    {
-            //        var serialCell = dataGridViewReceived.SelectedRows[0].Cells["SerialNrReceived"].Value;
-            //        generateQr.serialNumber = (serialCell == null || serialCell == DBNull.Value) ? "" : serialCell.ToString();
-            //    }
-
-            //    // Abrir ventana y esperar resultado
-            //    if (generateQr.ShowDialog() == DialogResult.OK)
-            //    {
-            //        // 1. Recuperar los datos del formulario que se acaba de cerrar
-            //        string nombre = generateQr.nameCustomer;
-            //        string apellido = generateQr.lastNameCustomer;
-            //        string serie = generateQr.serialNumer;
-
-            //        // 2. Generar el JSON de la lista completa
-            //        var itemsCompactos = itemsReceived.Select(i => new
-            //        {
-            //            c = i.CodItem,       // c = Código
-            //            s = i.SerialNumber,  // s = Serial
-            //            q = i.Quantity,      // q = Cantidad
-            //            v = i.DueDate        // v = Vencimiento
-            //        }).ToList();
-
-            //        string jsonCompacto = JsonConvert.SerializeObject(itemsCompactos, Formatting.None);
-
-            //        string jsonBase64 = CompressString(jsonCompacto);
-
-            //        // 3. Generar la imagen QR
-            //        // Usando QRCoder
-            //        QRCodeGenerator qrGenerator = new QRCodeGenerator();
-            //        QRCodeData qrData = qrGenerator.CreateQrCode(jsonBase64, QRCodeGenerator.ECCLevel.Q);
-            //        QRCode qrCode = new QRCode(qrData);
-            //        Bitmap qrImage = qrCode.GetGraphic(10);
-
-            //        // 4. Llamar a la lógica de impresión (el boceto que armamos antes)
-            //        ImprimirEtiqueta(nombre, apellido, serie, jsonBase64);
-            //    }
-            //}
         }
 
         /// <summary>
@@ -1158,6 +1122,6 @@ namespace Control
             BtnTests_Virtual_Click(sender, e);
         }
 
-
+        
     }
 }

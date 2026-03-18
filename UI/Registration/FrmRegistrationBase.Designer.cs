@@ -60,6 +60,7 @@ namespace Control
             btnExcelResult = new Button();
             btnPrintResult = new Button();
             btnActionsResult = new Button();
+            btnConvertLP = new Button();
             panel1 = new Panel();
             tabControl = new TabControl();
             tabAnexo = new TabPage();
@@ -306,7 +307,7 @@ namespace Control
             BtnCleanAnexo.ForeColor = Color.Gainsboro;
             BtnCleanAnexo.Image = Properties.Resources.Clean;
             BtnCleanAnexo.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnCleanAnexo.Location = new Point(0, 245);
+            BtnCleanAnexo.Location = new Point(0, 300);
             BtnCleanAnexo.Name = "BtnCleanAnexo";
             BtnCleanAnexo.Padding = new Padding(12, 0, 0, 0);
             BtnCleanAnexo.Size = new Size(200, 55);
@@ -501,6 +502,29 @@ namespace Control
             toolTip1.SetToolTip(btnActionsResult, "Ver más opciones");
             btnActionsResult.UseVisualStyleBackColor = true;
             btnActionsResult.Click += btnActionsResult_Click;
+            // 
+            // btnConvertLP
+            // 
+            btnConvertLP.Cursor = Cursors.Hand;
+            btnConvertLP.Dock = DockStyle.Top;
+            btnConvertLP.FlatAppearance.BorderSize = 0;
+            btnConvertLP.FlatAppearance.MouseOverBackColor = Color.FromArgb(29, 29, 58);
+            btnConvertLP.FlatStyle = FlatStyle.Flat;
+            btnConvertLP.Font = new Font("Segoe UI Semibold", 10F);
+            btnConvertLP.ForeColor = Color.Gainsboro;
+            btnConvertLP.Image = (Image)resources.GetObject("btnConvertLP.Image");
+            btnConvertLP.ImageAlign = ContentAlignment.MiddleLeft;
+            btnConvertLP.Location = new Point(0, 245);
+            btnConvertLP.Name = "btnConvertLP";
+            btnConvertLP.Padding = new Padding(12, 0, 0, 0);
+            btnConvertLP.Size = new Size(200, 55);
+            btnConvertLP.TabIndex = 7;
+            btnConvertLP.Text = "   Procesadores LP";
+            btnConvertLP.TextAlign = ContentAlignment.MiddleLeft;
+            btnConvertLP.TextImageRelation = TextImageRelation.ImageBeforeText;
+            toolTip1.SetToolTip(btnConvertLP, "Agregar extensión LP a los Procesadores");
+            btnConvertLP.UseVisualStyleBackColor = true;
+            btnConvertLP.Click += btnConvertLP_Click;
             // 
             // panel1
             // 
@@ -743,6 +767,7 @@ namespace Control
             panel8.BackColor = Color.FromArgb(51, 51, 76);
             panel8.Controls.Add(BtnTests);
             panel8.Controls.Add(BtnCleanAnexo);
+            panel8.Controls.Add(btnConvertLP);
             panel8.Controls.Add(BtnCreateOpenOrange);
             panel8.Controls.Add(BtnCompare);
             panel8.Controls.Add(BtnPasteAnexo);
@@ -763,7 +788,7 @@ namespace Control
             BtnTests.ForeColor = Color.Gainsboro;
             BtnTests.Image = Properties.Resources.CopyPaste1;
             BtnTests.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnTests.Location = new Point(0, 300);
+            BtnTests.Location = new Point(0, 355);
             BtnTests.Name = "BtnTests";
             BtnTests.Padding = new Padding(12, 0, 0, 0);
             BtnTests.Size = new Size(200, 55);
@@ -1278,5 +1303,6 @@ namespace Control
         private DataGridViewTextBoxColumn ColumnPriceResult;
         private DataGridViewTextBoxColumn ColumnBatchResult;
         private DataGridViewTextBoxColumn columnKitResult;
+        protected Button btnConvertLP;
     }
 }

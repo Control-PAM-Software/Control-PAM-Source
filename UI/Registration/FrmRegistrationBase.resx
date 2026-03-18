@@ -211,6 +211,18 @@
         YII=
 </value>
   </data>
+  <data name="btnConvertLP.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        EQAACxEBf2RfkQAAAVtJREFUWEftljFKQ1EQRYM2ugwrcQlp1KwgVYqoIIIuQcRSKxtRMIprSBnELYiW
+        olgLFoLYaGWhRwYmoJe8939gXqHkwHRz514+7897jcaE/wgwBewD90APmNGeogBH/GYATGtfEYAdMR9y
+        rr3hAF3gU51/sKuaMIAW8KGOwhewqtoQgEt1S3Cn2hCANnAFPKuj8wDcAFuqzQLMAstAp0bNAYfq7DR1
+        diXABvCqkzKYeUwAYEUn1CAmgG+yJ51Qg7AAC6quSViApqqdN+AUOEjUkm08FTkhAWy4/RFqPCwL964i
+        JyRA7hNXMa8+SQoEeLSDrT5JggPY/u+oR5bAAC/Ams6vpCKArVtdwaNqceyXELAJXPvFMQq7aOzCaas2
+        BOBWHRNcqDYE3/92aHLYo6Ol2jAybzrDwq2rJhzgWJ2dbe0tgt+GfTE/076i2C8EnNgbDtgba5NN+Et8
+        A9ntgbJyjixqAAAAAElFTkSuQmCC
+</value>
+  </data>
   <metadata name="timerMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>115, 17</value>
   </metadata>
