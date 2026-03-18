@@ -37,6 +37,7 @@ namespace Control
             panelDiffAnexo.BackColor = ColorTranslator.FromHtml(AppSettings.settings.ColorDifferences);
             panelMissItemAnexo.BackColor = ColorTranslator.FromHtml(AppSettings.settings.ColorMissingItem);
             BtnTests.Visible = AppSettings.settings.Test;
+            btnConvertLP.Visible = true;
 
             LoadObjects();
             LoadGridViews();
@@ -82,6 +83,45 @@ namespace Control
             this.lblTitleReceived.Text = "Accesorios";
             this.tabControl.TabPages[2].Text = "📦 Productos";
         }
+
+        #region Anexo Tab
+
+        protected override void btnConvertLP_Click(object sender, EventArgs e)
+        {
+            // Deshabilitamos temporalmente el refresco visual para mejorar el rendimiento
+            dataGridView1.SuspendLayout();
+
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                // Verificamos que la fila no sea la fila nueva (vacía) al final de la tabla
+                if (!row.IsNewRow)
+                {
+                    // Accedemos a la celda por el nombre de la columna "CodItem"
+                    var cell = row.Cells["CodItem"];
+
+                    if (cell.Value != null)
+                    {
+                        string valorActual = cell.Value.ToString();
+
+                        if (valorActual.EndsWith("LP"))
+                        {
+                            // Si ya termina en LP, lo eliminamos
+                            // Quitamos los últimos 2 caracteres
+                            cell.Value = valorActual.Substring(0, valorActual.Length - 2);
+                        }
+                        else
+                        {
+                            // Si no lo tiene, lo agregamos
+                            cell.Value = valorActual + "LP";
+                        }
+                    }
+                }
+            }
+
+            dataGridView1.ResumeLayout();
+        }
+
+        #endregion
 
         #region Received Tab
 
