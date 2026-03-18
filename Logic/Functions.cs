@@ -672,7 +672,7 @@ namespace Control.Logic
                             }
                             else
                             {
-                                worksheet.Cell(1, colExcel).Value = dgv.Columns[i].HeaderText.ToUpper();
+                                worksheet.Cell(1, colExcel).Value = dgv.Columns[i].HeaderText;
                             }
                             colExcel++;
                         }
