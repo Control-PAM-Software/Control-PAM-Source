@@ -151,6 +151,24 @@ namespace Control.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Ocurrió un error al imprimir la tabla.
+        /// </summary>
+        internal static string ErrorDeImpresion {
+            get {
+                return ResourceManager.GetString("ErrorDeImpresion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Ocurrió un error al generar el Qr.
+        /// </summary>
+        internal static string ErrorGenerarQr {
+            get {
+                return ResourceManager.GetString("ErrorGenerarQr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Help {
