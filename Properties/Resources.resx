@@ -175,4 +175,10 @@
   <data name="TablaVaciaImprimir" xml:space="preserve">
     <value>La tabla se encuentra vacía para su impresión.</value>
   </data>
+  <data name="ErrorDeImpresion" xml:space="preserve">
+    <value>Ocurrió un error al imprimir la tabla</value>
+  </data>
+  <data name="ErrorGenerarQr" xml:space="preserve">
+    <value>Ocurrió un error al generar el Qr</value>
+  </data>
 </root>

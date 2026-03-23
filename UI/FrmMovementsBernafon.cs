@@ -394,8 +394,15 @@ namespace Control
 
         private void btnPrintReceived_Click(object sender, EventArgs e)
         {
-            PrintManager printer = new PrintManager();
-            printer.PrintGrid(dataGridView1, "Movimiento Bernafon");
+            try
+            {
+                PrintManager printer = new PrintManager();
+                printer.PrintGrid(dataGridView1, "Movimiento Bernafon");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{Properties.Resources.ErrorDeImpresion}: \n\n{ex.Message}", "Error de impresión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

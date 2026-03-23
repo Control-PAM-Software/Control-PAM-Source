@@ -23,27 +23,53 @@ namespace Control.Logic
 
         public void PrintGrid(DataGridView dgv, string title)
         {
-            _dgv = dgv;
-            _title = title;
 
-            PrintDocument pd = new PrintDocument();
-            pd.DefaultPageSettings.Margins = new Margins(50, 50, 50, 50);
-
-            // SUSCRIBIR ESTE NUEVO EVENTO
-            pd.BeginPrint += (s, ev) =>
+            try
             {
-                _currentRowIndex = 0;
-                _pageNumber = 1;
-            };
+                _dgv = dgv;
+                _title = title;
 
-            pd.PrintPage += PrintPageEvent;
-            using (PrintPreviewDialog ppd = new PrintPreviewDialog())
-            {
-                ppd.Document = pd;
-                ppd.WindowState = FormWindowState.Maximized; // Abrir en pantalla completa
-                ppd.ShowDialog();
+                PrintDocument pd = new PrintDocument();
+                pd.DefaultPageSettings.Margins = new Margins(50, 50, 50, 50);
+
+                // SUSCRIBIR ESTE NUEVO EVENTO
+                pd.BeginPrint += (s, ev) =>
+                {
+                    _currentRowIndex = 0;
+                    _pageNumber = 1;
+                };
+
+                pd.PrintPage += PrintPageEvent;
+
+                // 1. Crear el diálogo de selección de impresora
+                using (PrintDialog pdialog = new PrintDialog())
+                {
+                    pdialog.Document = pd;
+                    // Opcional: Permitir elegir número de copias o rango de páginas
+                    pdialog.AllowSelection = true;
+                    pdialog.AllowSomePages = false;
+
+                    // 2. Si el usuario hace clic en "Imprimir" en el diálogo
+                    if (pdialog.ShowDialog() == DialogResult.OK)
+                    {
+                        // 3. (Opcional) Si aún quieres mostrar la vista previa ANTES de que salga el papel:
+                        using (PrintPreviewDialog ppd = new PrintPreviewDialog())
+                        {
+                            ppd.Document = pd;
+                            ppd.WindowState = FormWindowState.Maximized;
+                            ppd.ShowDialog();
+                        }
+
+                        // NOTA: Si no quieres vista previa y quieres que salga directo tras elegir impresora:
+                        // pd.Print(); 
+                    }
+                }
+
             }
-
+            catch (Exception ex)
+            {
+                throw new Exception($"Error en PrintManager: {ex.Message}");
+            }
         }
 
         private void PrintPageEvent(object sender, PrintPageEventArgs e)

@@ -19,14 +19,20 @@ namespace Control.Logic
         private const int OffsetLeft = 5;
         private const int OffsetTop = 5;
 
+        /// <summary>
+        /// Genera e imprime un código Qr para encapsulamiento de artículos.
+        /// </summary>
+        /// <param name="nombre">Nombre del paciente en caso de valijas de AB.</param>
+        /// <param name="apellido">Apellido del paciente en caso de valijas de AB.</param>
+        /// <param name="serie">Serie del procesador en caso de valijas de AB.</param>
+        /// <param name="items">Listado de ítems a encapsular.</param>
+        /// <exception cref="Exception"></exception>
         public void ImprimirEtiquetaValija(string nombre, string apellido, string serie, List<object> items)
         {
             try
             {
-                // 1. Preparar datos (Compresión interna)
                 string jsonCompacto = SerializarYComprimir(items);
 
-                // 2. Configurar Documento de Impresión
                 PrintDocument pd = new PrintDocument();
                 pd.DefaultPageSettings.PaperSize = new PaperSize("SATO_10x6", LabelWidth, LabelHeight);
                 pd.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0);
@@ -37,12 +43,28 @@ namespace Control.Logic
                     RenderizarEtiqueta(e.Graphics, nombre, apellido, serie, jsonCompacto);
                 };
 
-                // 3. Mostrar Vista Previa
-                using (PrintPreviewDialog ppd = new PrintPreviewDialog())
+                // 1. Crear el diálogo de selección de impresora
+                using (PrintDialog pdialog = new PrintDialog())
                 {
-                    ppd.Document = pd;
-                    ppd.WindowState = FormWindowState.Maximized;
-                    ppd.ShowDialog();
+                    pdialog.Document = pd;
+                    // Opcional: Permitir elegir número de copias o rango de páginas
+                    pdialog.AllowSelection = true;
+                    pdialog.AllowSomePages = false;
+
+                    // 2. Si el usuario hace clic en "Imprimir" en el diálogo
+                    if (pdialog.ShowDialog() == DialogResult.OK)
+                    {
+                        // 3. (Opcional) Si aún quieres mostrar la vista previa ANTES de que salga el papel:
+                        using (PrintPreviewDialog ppd = new PrintPreviewDialog())
+                        {
+                            ppd.Document = pd;
+                            ppd.WindowState = FormWindowState.Maximized;
+                            ppd.ShowDialog();
+                        }
+
+                        // NOTA: Si no quieres vista previa y quieres que salga directo tras elegir impresora:
+                        // pd.Print(); 
+                    }
                 }
             }
             catch (Exception ex)
@@ -51,6 +73,11 @@ namespace Control.Logic
             }
         }
 
+        /// <summary>
+        /// Comprime los ítems para que el Qr no quede tan denso.
+        /// </summary>
+        /// <param name="items">Listado de ítems a comprimir.</param>
+        /// <returns></returns>
         private string SerializarYComprimir(List<object> items)
         {
             // El mapeo a 'c', 's', 'q', 'v' se hace aquí para que el Form no sepa de esto
@@ -81,6 +108,14 @@ namespace Control.Logic
             }
         }
 
+        /// <summary>
+        /// Genera la etiqueta con el Qr a imprimir.
+        /// </summary>
+        /// <param name="g">Gráficos.</param>
+        /// <param name="nombre">Nombre del paciente en caso de valijas de AB.</param>
+        /// <param name="apellido">Apellido del paciente en caso de valijas de AB.</param>
+        /// <param name="serie">Serie del procesador en caso de valijas de AB.</param>
+        /// <param name="jsonContent">Json del listado de ítems comprimido.</param>
         private void RenderizarEtiqueta(Graphics g, string nombre, string apellido, string serie, string jsonContent)
         {
             g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
