@@ -14,65 +14,7 @@ namespace Control.Models.Responses
         public List<ItemAnexo> MissingItems { get; set; } = new();
         public List<ItemAnexo> ExtraItems { get; set; } = new();
         public List<ItemAnexo> ResultItems { get; set; } = new(); // Para retornar el listado del anexo que falta comparar (CompareItemsNew)
-
-        //static public ComparisonResult CompareItems(List<ItemAnexo> items, List<ItemAnexo> itemsReceived)
-        //{
-        //    ComparisonResult result = new();
-        //    var usedReceived = new HashSet<ItemAnexo>();
-
-        //    foreach (var expected in items)
-        //    {
-        //        // 1. Buscar todos los recibidos con el mismo código
-        //        var possibleMatches = itemsReceived
-        //            .Where(x => x.CodItem == expected.CodItem && !usedReceived.Contains(x))
-        //            .ToList();
-
-        //        if (possibleMatches.Count == 0)
-        //        {
-        //            result.MissingItems.Add(expected);
-        //            continue;
-        //        }
-
-        //        // 2. Buscar uno que matchee perfectamente
-        //        var perfectMatch = possibleMatches.FirstOrDefault(x =>
-        //            x.SerialNumber == expected.SerialNumber &&
-        //            x.Quantity == expected.Quantity &&
-        //            x.DueDate == expected.DueDate);
-
-        //        if (perfectMatch != null)
-        //        {
-        //            result.CorrectItems.Add(expected);
-        //            usedReceived.Add(perfectMatch);
-        //        }
-        //        else
-        //        {
-        //            // 3. Buscar el que tenga el mismo serial, si existe
-        //            var closestMatch = possibleMatches.FirstOrDefault(x => x.SerialNumber == expected.SerialNumber)
-        //                ?? possibleMatches.First(); // o el primero si no coincide el serial
-
-        //            bool serialNumberDiffers = closestMatch.SerialNumber != expected.SerialNumber;
-        //            bool quantityDiffers = closestMatch.Quantity != expected.Quantity;
-        //            bool dueDateDiffers = closestMatch.DueDate != expected.DueDate;
-
-        //            result.MismatchedItems.Add(new MismatchedDetail
-        //            {
-        //                Expected = expected,
-        //                Received = closestMatch,
-        //                SerialNumberDiffers = serialNumberDiffers,
-        //                QuantityDiffers = quantityDiffers,
-        //                DueDateDiffers = dueDateDiffers
-        //            });
-
-        //            usedReceived.Add(closestMatch);
-        //        }
-        //    }
-
-        //    // 4. ExtraItems: recibidos no usados
-        //    result.ExtraItems.AddRange(itemsReceived.Except(usedReceived));
-
-        //    return result;
-        //}
-
+                
 
         static public ComparisonResult CompareItems(List<ItemAnexo> items, List<ItemAnexo> itemsReceived)
         {
@@ -315,6 +257,10 @@ namespace Control.Models.Responses
             }
         }
 
+        public bool IsComparisonCorrect()
+        {
+            return (CorrectItems.Count > 0 && MismatchedItems.Count() == 0 && MissingItems.Count() == 0 && ExtraItems.Count() == 0);
+        }
     }
 
     public class MismatchedDetail

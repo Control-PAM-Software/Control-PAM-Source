@@ -419,7 +419,13 @@ namespace Control
 
         #region Comparar
 
-        private void BtnCompare_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Evento asociado al botón de Comparar.
+        /// Valijas AB (FrmRegistrationAB) sobreescribe este método.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected virtual void BtnCompare_Click(object sender, EventArgs e)
         {
             setItemsAnexo();
             if (items.Count == 0)
@@ -773,9 +779,9 @@ namespace Control
                 PrintManager printer = new PrintManager();
                 printer.PrintGrid(dataGridViewReceived, $"Recepción de {productName}");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Hubo un error al imprimir la tabla", "Error de impresión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"{Properties.Resources.ErrorDeImpresion}: \n\n{ex.Message}", "Error de impresión", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
         }
@@ -866,124 +872,12 @@ namespace Control
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"{Properties.Resources.ErrorGenerarQr}: \n\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
         }
 
-        /// <summary>
-        /// Comprime la información del JSON en Base64
-        /// </summary>
-        /// <param name="text">JSON a comprimir.</param>
-        /// <returns>JSON comprimido en base64.</returns>
-        public string CompressString(string text)
-        {
-            byte[] buffer = System.Text.Encoding.UTF8.GetBytes(text);
-            using (var ms = new System.IO.MemoryStream())
-            {
-                using (var zip = new System.IO.Compression.GZipStream(ms, System.IO.Compression.CompressionMode.Compress))
-                {
-                    zip.Write(buffer, 0, buffer.Length);
-                }
-                return Convert.ToBase64String(ms.ToArray());
-            }
-        }
-
-        /// <summary>
-        /// Genera la impresión del Qr con la información de la valija.
-        /// </summary>
-        /// <param name="nombre">Nombre del paciente.</param>
-        /// <param name="apellido">Apellido del paciente.</param>
-        /// <param name="serie">Número de serie del procesador asociado a la valija.</param>
-        /// <param name="jsonContent">JSON comprimido del contenido de la valija.</param>
-        public void ImprimirEtiqueta(string nombre, string apellido, string serie, string jsonContent)
-        {
-            try
-            {
-                bool drawLine = false;
-                PrintDocument pd = new PrintDocument();
-
-                // --- CONFIGURACIÓN DE PRODUCCIÓN (Ajustable) ---
-                // Estas variables permiten calibrar la impresión en el sitio
-                int offsetLeft = 5;  // Desplazamiento X global
-                int offsetTop = 5;   // Desplazamiento Y global
-                int labelWidth = 236; // 6cm en centésimas de pulgada
-                int labelHeight = 394; // 10cm en centésimas de pulgada
-
-                pd.DefaultPageSettings.PaperSize = new PaperSize("SATO_10x6", labelWidth, labelHeight);
-                pd.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0);
-                pd.OriginAtMargins = true; // El (0,0) es el borde físico
-                pd.DefaultPageSettings.Landscape = false;
-
-                pd.PrintPage += (s, e) =>
-                {
-                    Graphics g = e.Graphics;
-                    g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-
-                    // --- Estilos ---
-                    System.Drawing.Font fontLabel = new System.Drawing.Font("Arial", 8, FontStyle.Bold);
-                    System.Drawing.Font fontData = new System.Drawing.Font("Arial", 10, FontStyle.Regular);
-                    System.Drawing.Font fontTitle = new System.Drawing.Font("Arial", 12, FontStyle.Bold);
-                    Pen penBorder = new Pen(System.Drawing.Color.Black, 2);
-
-                    // --- 1. Información (Vertical) ---
-                    int startX = offsetLeft + 20;
-                    int currentY = offsetTop + 30;
-
-                    if (!string.IsNullOrEmpty(nombre))
-                    {
-                        g.DrawString("PACIENTE", fontLabel, Brushes.Gray, startX, currentY);
-                        g.DrawString(nombre.ToUpper(), fontTitle, Brushes.Black, startX, currentY + 15);
-                        g.DrawString(apellido.ToUpper(), fontTitle, Brushes.Black, startX, currentY + 35);
-                        currentY += 80;
-                        drawLine = true;
-                    }
-
-                    if (!string.IsNullOrEmpty(serie))
-                    {
-                        g.DrawString("NÚMERO DE SERIE", fontLabel, Brushes.Gray, startX, currentY);
-                        g.DrawString(serie, fontData, Brushes.Black, startX, currentY + 15);
-                        currentY += 50;
-                        drawLine = true;
-                    }
-
-                    if (drawLine)
-                    {
-                        // Línea de separación
-                        g.DrawLine(Pens.LightGray, startX, currentY, labelWidth - 35, currentY);
-                        currentY += 20;
-                    }
-
-                    // --- 2. Generación de QR ---
-                    QRCodeGenerator qrGenerator = new QRCodeGenerator();
-                    // Nivel L para que el QR sea menos denso y la SATO (203dpi) lo imprima más nítido
-                    QRCodeData qrData = qrGenerator.CreateQrCode(jsonContent, QRCodeGenerator.ECCLevel.L);
-                    QRCode qrCode = new QRCode(qrData);
-
-                    using (Bitmap qrImage = qrCode.GetGraphic(5)) // Módulo 5 es ideal para 203dpi
-                    {
-                        int qrSize = 180;
-                        int qrX = (labelWidth / 2) - (qrSize / 2); // Centrado exacto
-
-                        Rectangle qrRect = new Rectangle(qrX, currentY, qrSize, qrSize);
-                        g.DrawImage(qrImage, qrRect);
-                    }
-
-                };
-
-                using (PrintPreviewDialog ppd = new PrintPreviewDialog())
-                {
-                    ppd.Document = pd;
-                    ppd.WindowState = FormWindowState.Maximized;
-                    ppd.ShowDialog();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error de impresión: {ex.Message}");
-            }
-        }
         #endregion
 
         #endregion
@@ -1031,9 +925,9 @@ namespace Control
                 PrintManager printer = new PrintManager();
                 printer.PrintGrid(dataGridViewResult, $"Ingreso {productName} Open Orange");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Hubo un error al imprimir la tabla", "Error de impresión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"{Properties.Resources.ErrorDeImpresion}: \n\n{ex.Message}", "Error de impresión", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 

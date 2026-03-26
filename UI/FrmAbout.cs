@@ -29,8 +29,8 @@ namespace Control
 
             // Contenido normal con viñetas
             rtbChangeset.SelectionFont = new Font("Segoe UI", 9F, FontStyle.Regular);
-            string myChangeset = "• Se agregó botón para insertar LP a los códigos de Accesorios AB.\n\n" +
-                                 "• Se modificó la exportación a Excel, cambiando los encabezados de mayúsculas a minúsculas.\n\n";
+            string myChangeset = "• Se incluye botón para agregar extensión LP en Ingreso Accesorios AB.\n\n" +
+                                 "• Se corrige la comparación para valijas bilaterales.\n\n";
 
             rtbChangeset.AppendText(myChangeset);
         }
