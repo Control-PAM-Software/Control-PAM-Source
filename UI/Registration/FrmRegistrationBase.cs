@@ -419,7 +419,13 @@ namespace Control
 
         #region Comparar
 
-        private void BtnCompare_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Evento asociado al botón de Comparar.
+        /// Valijas AB (FrmRegistrationAB) sobreescribe este método.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected virtual void BtnCompare_Click(object sender, EventArgs e)
         {
             setItemsAnexo();
             if (items.Count == 0)
