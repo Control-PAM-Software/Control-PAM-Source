@@ -29,8 +29,8 @@ namespace Control
 
             // Contenido normal con viñetas
             rtbChangeset.SelectionFont = new Font("Segoe UI", 9F, FontStyle.Regular);
-            string myChangeset = "• Se agrega exportador Excel, Impresión y generador de Qr en Valijas AB.\n\n" +
-                                 "• Cambio en Valijas AB, ya no se agrupan unidades.\n\n";
+            string myChangeset = "• Se incluye botón para agregar extensión LP en Ingreso Accesorios AB.\n\n" +
+                                 "• Se corrige la comparación para valijas bilaterales.\n\n";
 
             rtbChangeset.AppendText(myChangeset);
         }
