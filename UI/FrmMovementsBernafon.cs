@@ -310,7 +310,7 @@ namespace Control
             // Utilizo oldQty - 1 ya que está la fila original del producto
             for (int i = 0; i < oldQty - 1; i++)
             {
-                DataGridViewRow row = new DataGridViewRow();
+                DataGridViewRow row = (DataGridViewRow)dataGridView1.RowTemplate.Clone();
                 row.CreateCells(dataGridView1);
 
                 row.Cells[artCodeIndex].Value = code;
