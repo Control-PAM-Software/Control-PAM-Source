@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using DocumentFormat.OpenXml.Office.PowerPoint.Y2021.M06.Main;
+using Control.Models.Update;
 
 namespace Control
 {
@@ -278,6 +279,30 @@ namespace Control
             {
                 this.Close();
             }
+        }
+
+        private async void FrmHome_Shown(object sender, EventArgs e)
+        {
+            UpdateManager updater = new UpdateManager();
+            var update = await updater.CheckForUpdatesAsync();
+
+            // Solo si hay algo nuevo, preguntamos. Si no, silencio total.
+            if (update != null)
+            {
+                if (ConfirmUpdate(update))
+                {
+                    await updater.ExecuteUpdateAsync(update.url_download);
+                }
+            }
+        }
+
+        private bool ConfirmUpdate(UpdateInfo data)
+        {
+            string message = $"Nueva versión disponible: v{data.version}\n\n" +
+                             $"Cambios:\n• {string.Join("\n• ", data.changelog)}\n\n" +
+                             "¿Deseas descargar e instalar ahora?";
+
+            return MessageBox.Show(message, "Actualización Encontrada", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
         }
     }
 
