@@ -171,18 +171,18 @@ namespace Control
             // 
             // acercaDeToolStripMenuItem
             // 
+            acercaDeToolStripMenuItem.Margin = new Padding(5, 0, 5, 0);
             acercaDeToolStripMenuItem.Name = "acercaDeToolStripMenuItem";
             acercaDeToolStripMenuItem.Size = new Size(84, 23);
             acercaDeToolStripMenuItem.Text = "Acerca De";
-            acercaDeToolStripMenuItem.Margin = new Padding(5, 0, 5, 0);
             acercaDeToolStripMenuItem.Click += acercaDeToolStripMenuItem_Click;
             // 
             // salirToolStripMenuItem
             // 
+            salirToolStripMenuItem.Margin = new Padding(5, 0, 5, 0);
             salirToolStripMenuItem.Name = "salirToolStripMenuItem";
             salirToolStripMenuItem.Size = new Size(49, 23);
             salirToolStripMenuItem.Text = "Salir";
-            salirToolStripMenuItem.Margin = new Padding(5, 0, 5, 0);
             salirToolStripMenuItem.Click += salirToolStripMenuItem_Click;
             // 
             // FrmHome
@@ -201,6 +201,7 @@ namespace Control
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Gestor Inventario";
             Load += FrmHome_Load;
+            Shown += FrmHome_Shown;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);
