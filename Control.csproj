@@ -44,4 +44,15 @@
     <Folder Include="Data\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="Control.Tests\**" />
+    <Content Remove="Control.Tests\**" />
+    <EmbeddedResource Remove="Control.Tests\**" />
+    <None Remove="Control.Tests\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Control.Tests" />
+  </ItemGroup>
+
 </Project>

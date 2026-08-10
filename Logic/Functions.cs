@@ -841,7 +841,7 @@ namespace Control.Logic
             return null;
         }
 
-        private static ItemAnexo? GetItemFromInputAtos(string pCodeInputUser)
+        internal static ItemAnexo? GetItemFromInputAtos(string pCodeInputUser)
         {
             string code = pCodeInputUser[^4..];
             string serial = pCodeInputUser.Substring(pCodeInputUser.Length - 14, 7);
@@ -860,7 +860,7 @@ namespace Control.Logic
             //return (code, serial);
         }
 
-        private static ItemAnexo? GetItemFromInputInomed(string inputUser)
+        internal static ItemAnexo? GetItemFromInputInomed(string inputUser)
         {
             ItemAnexo newItem = new ItemAnexo();
             // 01142503076038452405326251024D029D172904043010
@@ -903,7 +903,7 @@ namespace Control.Logic
             return newItem;
         }
 
-        private static ItemAnexo? GetItemFromInputOticom(string pCodeInput, string pSerialInput)
+        internal static ItemAnexo? GetItemFromInputOticom(string pCodeInput, string pSerialInput)
         {
             try
             {
@@ -963,7 +963,7 @@ namespace Control.Logic
             return null;
         }
 
-        private static ItemAnexo? GetItemFromInputAB(string pCodeInputUser, string pSerialInputUser)
+        internal static ItemAnexo? GetItemFromInputAB(string pCodeInputUser, string pSerialInputUser)
         {
             string codeNewItem = pCodeInputUser.Replace("'", "-");
 
@@ -993,7 +993,7 @@ namespace Control.Logic
 
         /// Normalizes dates in dd/MM/yy format.
         /// Years >= 30 are adjusted to the next century according to business rules.
-        private static DateOnly? NormalizeTwoDigitYearDate(object dueDate)
+        internal static DateOnly? NormalizeTwoDigitYearDate(object dueDate)
         {
             if (dueDate == null)
                 return null;
@@ -1049,7 +1049,7 @@ namespace Control.Logic
 
         }
 
-        private static (string codItem, string description) GetCodeDescriptionSplitted(string codItemStr)
+        internal static (string codItem, string description) GetCodeDescriptionSplitted(string codItemStr)
         {
             string codItem = string.Empty;
             string description = string.Empty;
@@ -1076,7 +1076,7 @@ namespace Control.Logic
             return (codItem, description);
         }
 
-        private static int getQuantityValue(string number)
+        internal static int getQuantityValue(string number)
         {
             if (string.IsNullOrEmpty(number)) return 0;
             if (string.IsNullOrWhiteSpace(number)) return 0;
@@ -1102,7 +1102,7 @@ namespace Control.Logic
             return dueDate.ToString("dd/MM/yyyy");
         }
 
-        private static Match GetMatchRegex(string pInput, string pRegex)
+        internal static Match GetMatchRegex(string pInput, string pRegex)
         {
             Regex regex = new Regex(@$"{pRegex}");
 
@@ -1123,7 +1123,7 @@ namespace Control.Logic
             return (serie, dueDate);
         }
 
-        private static string ConvertDate(string date, string dateFormat = "yyMMdd")
+        internal static string ConvertDate(string date, string dateFormat = "yyMMdd")
         {
             if (string.IsNullOrWhiteSpace(date))
                 return string.Empty;
