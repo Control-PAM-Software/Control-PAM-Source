@@ -2,6 +2,7 @@
 using Control.Models.Entities;
 using Control.Models.Responses;
 using Control.Models.Settings;
+using ClosedXML.Excel;
 using DocumentFormat.OpenXml.Spreadsheet;
 using Newtonsoft.Json;
 using QRCoder;
@@ -22,7 +23,13 @@ namespace Control
     {
         protected List<ItemAnexo> items = new List<ItemAnexo>(); // items del anexo
         protected List<ItemAnexo> itemsReceived = new List<ItemAnexo>(); // items de la valija
+        protected List<ItemAnexo> itemsEtiquetas = new List<ItemAnexo>(); // acumulador de sesión para el Excel de etiquetas
         protected dynamic ConfigMarca { get; set; }
+
+        /// <summary>
+        /// Número de despacho cargado en la parte superior del formulario.
+        /// </summary>
+        protected string Despacho => TxtDespacho.Text.Trim();
 
         protected int MAX_HEIGHT_RECEIVED = 165; // Altura total de los 3 sub-botones (55px cada uno)
         protected int MAX_HEIGHT_RESULT = 110; // Altura total de los 2 sub-botones (55px cada uno)
@@ -587,6 +594,102 @@ namespace Control
 
         #endregion
 
+        #region Exportar Etiquetas
+
+        /// <summary>
+        /// Evento asociado para exportar el Excel de etiquetas del ingreso (Código, Serie, Cantidad, Despacho).
+        /// Utiliza el acumulador de sesión, por lo que no se ve afectado por las limpiezas de las grillas.
+        /// Muestra un spinner mientras el archivo se genera en un hilo de fondo.
+        /// Cada clase puede sobrescribir la lógica si su operativa difiere.
+        /// </summary>
+        protected virtual async void btnExportEtiquetas_Click(object sender, EventArgs e)
+        {
+            string despacho = Despacho;
+
+            if (itemsEtiquetas.Count == 0)
+            {
+                MessageBox.Show(Properties.Resources.TablaVaciaExportarExcel, "Sin información", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            if (string.IsNullOrEmpty(despacho))
+            {
+                MessageBox.Show("Debe cargar el número de Despacho antes de exportar las etiquetas.", "Falta Despacho", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            try
+            {
+                await ExportarEtiquetasAsync(despacho);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Hubo un error al exportar las etiquetas a un Excel:\n\n{ex}", "Error de exportación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Genera y guarda el Excel de etiquetas mostrando un spinner de carga sobre la ventana.
+        /// La construcción y escritura del archivo se hacen en segundo plano para no bloquear la UI.
+        /// </summary>
+        private async Task ExportarEtiquetasAsync(string despacho)
+        {
+            string suggestedFileName = Functions.GetLabelsSuggestedFileName();
+            string exportFolder = AppSettings.settings.Etiquetas.ExportPath?.Trim() ?? "";
+
+            string destinationPath;
+
+            if (!string.IsNullOrEmpty(exportFolder) && Directory.Exists(exportFolder))
+            {
+                destinationPath = Path.Combine(exportFolder, suggestedFileName);
+            }
+            else
+            {
+                // Sin carpeta configurada: pedir ubicación antes de arrancar el trabajo pesado
+                destinationPath = Functions.PromptLabelsSaveLocation(suggestedFileName, exportFolder);
+
+                if (destinationPath == null)
+                {
+                    return;
+                }
+            }
+
+            Enabled = false;
+
+            using (FrmLoadingOverlay spinner = new FrmLoadingOverlay(this))
+            {
+                try
+                {
+                    spinner.Show();
+
+                    List<ItemAnexo> itemsSnapshot = itemsEtiquetas.ToList();
+
+                    await Task.Run(() =>
+                    {
+                        using (XLWorkbook workbook = Functions.BuildLabelsWorkbook(itemsSnapshot, despacho))
+                        {
+                            workbook.SaveAs(destinationPath);
+                        }
+                    });
+
+                    spinner.Close();
+
+                    if (MessageBox.Show("Exportación exitosa. ¿Desea abrir el archivo?", "Excel",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(destinationPath) { UseShellExecute = true });
+                    }
+                }
+                finally
+                {
+                    spinner.Close();
+                    Enabled = true;
+                }
+            }
+        }
+
+        #endregion
+
         protected virtual void btnConvertLP_Click(object sender, EventArgs e)
         {
             throw new NotImplementedException();
@@ -617,7 +720,9 @@ namespace Control
         {
             dataGridView1.Rows.Clear();
             TxtSerialNumProcessor.Clear();
+            TxtDespacho.Clear();
             items.Clear();
+            itemsEtiquetas.Clear();
         }
 
 
@@ -655,6 +760,8 @@ namespace Control
             hasPila.SerialNumber = "150650";
             hasPila.DueDate = "";
             hasPila.Quantity = 1;
+
+            AddToLabelAccumulator(hasPila);
 
             ItemAnexo existingItem = itemsReceived.FirstOrDefault(x => x.CodItem == hasPila.CodItem && x.SerialNumber == hasPila.SerialNumber);
 
@@ -703,6 +810,8 @@ namespace Control
 
         protected void AddNewItem(ItemAnexo itemInput)
         {
+            AddToLabelAccumulator(itemInput);
+
             ItemAnexo? existingItem = itemsReceived.FirstOrDefault(x => x.CodItem == itemInput.CodItem && x.SerialNumber == itemInput.SerialNumber && (x.DueDate == itemInput.DueDate || string.Equals(itemInput.DueDate, "")));
 
             if (existingItem != null)
@@ -718,6 +827,24 @@ namespace Control
 
             TxtPickCodeReceived.Focus();
             TxtPickCodeReceived.Clear();
+        }
+
+        /// <summary>
+        /// Agrega o agrupa un ítem en el acumulador de sesión usado para el Excel de etiquetas.
+        /// Se guarda un clon para que mutaciones posteriores de la valija no alteren lo ya acumulado.
+        /// </summary>
+        protected void AddToLabelAccumulator(ItemAnexo itemInput)
+        {
+            ItemAnexo? existingItem = itemsEtiquetas.FirstOrDefault(x => x.CodItem == itemInput.CodItem && x.SerialNumber == itemInput.SerialNumber);
+
+            if (existingItem != null)
+            {
+                existingItem.Quantity += itemInput.Quantity;
+            }
+            else
+            {
+                itemsEtiquetas.Add(itemInput.Clone());
+            }
         }
 
         #endregion
@@ -751,6 +878,7 @@ namespace Control
             TxtPickCodeReceived.Clear();
             TxtPickSerialNumReceived.Clear();
             itemsReceived.Clear();
+            itemsEtiquetas.Clear();
         }
 
 

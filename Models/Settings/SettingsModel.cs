@@ -18,6 +18,8 @@ namespace Control.Models.Settings
 
         public OpenOrange OpenOrange { get; set; } = new OpenOrange();
 
+        public Etiquetas Etiquetas { get; set; } = new Etiquetas();
+
         public Base_Settings InventoryAtos { get; set; } = new Base_Settings();
         public Base_Settings IngresoAtos { get; set; } = new Base_Settings();
 
