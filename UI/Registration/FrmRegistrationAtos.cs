@@ -160,9 +160,12 @@ namespace Control
             };
 
             dataGridViewReceived.Rows.Clear();
+            itemsEtiquetas.Clear(); // El botón de pruebas también carga el acumulador interno de etiquetas
 
             foreach (var item in items)
             {
+                AddToLabelAccumulator(item);
+
                 dataGridViewReceived.Rows.Add(
                     item.Quantity,
                     item.CodItem,
