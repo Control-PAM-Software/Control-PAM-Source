@@ -61,6 +61,7 @@ namespace Control
             btnPrintResult = new Button();
             btnActionsResult = new Button();
             btnConvertLP = new Button();
+            btnExportEtiquetas = new Button();
             panel1 = new Panel();
             tabControl = new TabControl();
             tabAnexo = new TabPage();
@@ -80,6 +81,8 @@ namespace Control
             panelDiffAnexo = new Panel();
             lblSerieInputAnexo = new Label();
             TxtSerialNumProcessor = new TextBox();
+            lblDespacho = new Label();
+            TxtDespacho = new TextBox();
             panel8 = new Panel();
             BtnTests = new Button();
             panel9 = new Panel();
@@ -526,6 +529,29 @@ namespace Control
             btnConvertLP.UseVisualStyleBackColor = true;
             btnConvertLP.Click += btnConvertLP_Click;
             // 
+            // btnExportEtiquetas
+            // 
+            btnExportEtiquetas.Cursor = Cursors.Hand;
+            btnExportEtiquetas.Dock = DockStyle.Top;
+            btnExportEtiquetas.FlatAppearance.BorderSize = 0;
+            btnExportEtiquetas.FlatAppearance.MouseOverBackColor = Color.FromArgb(29, 29, 58);
+            btnExportEtiquetas.FlatStyle = FlatStyle.Flat;
+            btnExportEtiquetas.Font = new Font("Segoe UI Semibold", 9F);
+            btnExportEtiquetas.ForeColor = Color.Gainsboro;
+            btnExportEtiquetas.Image = (Image)resources.GetObject("btnExportEtiquetas.Image");
+            btnExportEtiquetas.ImageAlign = ContentAlignment.MiddleLeft;
+            btnExportEtiquetas.Location = new Point(0, 245);
+            btnExportEtiquetas.Name = "btnExportEtiquetas";
+            btnExportEtiquetas.Padding = new Padding(12, 0, 0, 0);
+            btnExportEtiquetas.Size = new Size(200, 55);
+            btnExportEtiquetas.TabIndex = 12;
+            btnExportEtiquetas.Text = "   Exportar Etiquetas";
+            btnExportEtiquetas.TextAlign = ContentAlignment.MiddleLeft;
+            btnExportEtiquetas.TextImageRelation = TextImageRelation.ImageBeforeText;
+            toolTip1.SetToolTip(btnExportEtiquetas, "Genera Excel de etiquetas del ingreso (Código, Serie, Cantidad, Despacho)");
+            btnExportEtiquetas.UseVisualStyleBackColor = true;
+            btnExportEtiquetas.Click += btnExportEtiquetas_Click;
+            // 
             // panel1
             // 
             panel1.BackColor = Color.White;
@@ -692,6 +718,8 @@ namespace Control
             panel10.Controls.Add(panelDiffAnexo);
             panel10.Controls.Add(lblSerieInputAnexo);
             panel10.Controls.Add(TxtSerialNumProcessor);
+            panel10.Controls.Add(lblDespacho);
+            panel10.Controls.Add(TxtDespacho);
             panel10.Dock = DockStyle.Top;
             panel10.Location = new Point(200, 0);
             panel10.Name = "panel10";
@@ -743,7 +771,7 @@ namespace Control
             lblSerieInputAnexo.AutoSize = true;
             lblSerieInputAnexo.Font = new Font("Segoe UI Semibold", 10F);
             lblSerieInputAnexo.ForeColor = Color.White;
-            lblSerieInputAnexo.Location = new Point(660, 30);
+            lblSerieInputAnexo.Location = new Point(660, 51);
             lblSerieInputAnexo.Name = "lblSerieInputAnexo";
             lblSerieInputAnexo.Size = new Size(113, 19);
             lblSerieInputAnexo.TabIndex = 41;
@@ -756,11 +784,36 @@ namespace Control
             TxtSerialNumProcessor.BorderStyle = BorderStyle.FixedSingle;
             TxtSerialNumProcessor.Font = new Font("Segoe UI", 11F);
             TxtSerialNumProcessor.ForeColor = Color.White;
-            TxtSerialNumProcessor.Location = new Point(785, 27);
+            TxtSerialNumProcessor.Location = new Point(785, 48);
             TxtSerialNumProcessor.Name = "TxtSerialNumProcessor";
             TxtSerialNumProcessor.Size = new Size(190, 27);
             TxtSerialNumProcessor.TabIndex = 39;
             TxtSerialNumProcessor.TextAlign = HorizontalAlignment.Center;
+            // 
+            // lblDespacho
+            // 
+            lblDespacho.Anchor = AnchorStyles.Right;
+            lblDespacho.AutoSize = true;
+            lblDespacho.Font = new Font("Segoe UI Semibold", 10F);
+            lblDespacho.ForeColor = Color.White;
+            lblDespacho.Location = new Point(712, 15);
+            lblDespacho.Name = "lblDespacho";
+            lblDespacho.Size = new Size(72, 19);
+            lblDespacho.TabIndex = 46;
+            lblDespacho.Text = "Despacho";
+            // 
+            // TxtDespacho
+            // 
+            TxtDespacho.Anchor = AnchorStyles.Right;
+            TxtDespacho.BackColor = Color.FromArgb(50, 50, 75);
+            TxtDespacho.BorderStyle = BorderStyle.FixedSingle;
+            TxtDespacho.Font = new Font("Segoe UI", 10F);
+            TxtDespacho.ForeColor = Color.White;
+            TxtDespacho.Location = new Point(792, 12);
+            TxtDespacho.Name = "TxtDespacho";
+            TxtDespacho.Size = new Size(183, 25);
+            TxtDespacho.TabIndex = 47;
+            TxtDespacho.TextAlign = HorizontalAlignment.Center;
             // 
             // panel8
             // 
@@ -768,6 +821,7 @@ namespace Control
             panel8.Controls.Add(BtnTests);
             panel8.Controls.Add(BtnCleanAnexo);
             panel8.Controls.Add(btnConvertLP);
+            panel8.Controls.Add(btnExportEtiquetas);
             panel8.Controls.Add(BtnCreateOpenOrange);
             panel8.Controls.Add(BtnCompare);
             panel8.Controls.Add(BtnPasteAnexo);
@@ -1304,5 +1358,8 @@ namespace Control
         private DataGridViewTextBoxColumn ColumnBatchResult;
         private DataGridViewTextBoxColumn columnKitResult;
         protected Button btnConvertLP;
+        protected Button btnExportEtiquetas;
+        protected Label lblDespacho;
+        protected TextBox TxtDespacho;
     }
 }

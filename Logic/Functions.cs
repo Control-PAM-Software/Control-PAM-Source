@@ -741,6 +741,103 @@ namespace Control.Logic
             }
         }
 
+        /// <summary>
+        /// Construye el workbook de etiquetas con las columnas configuradas en Settings > Etiquetas.
+        /// No interactúa con la UI, por lo que puede ejecutarse en un hilo de fondo.
+        /// </summary>
+        /// <param name="items">Ítems acumulados durante la sesión del ingreso.</param>
+        /// <param name="despacho">Número de despacho cargado en el formulario.</param>
+        public static XLWorkbook BuildLabelsWorkbook(List<ItemAnexo> items, string despacho)
+        {
+            var configEtiquetas = AppSettings.settings.Etiquetas;
+
+            // Armado dinámico de columnas según configuración
+            var exportColumns = new List<(string Header, Func<ItemAnexo, ClosedXML.Excel.XLCellValue> GetValue)>();
+
+            if (configEtiquetas.ColumnCode.isActive)
+                exportColumns.Add((configEtiquetas.ColumnCode.name, x => x.CodItem));
+
+            if (configEtiquetas.ColumnSerialNumber.isActive)
+                exportColumns.Add((configEtiquetas.ColumnSerialNumber.name, x => x.SerialNumber));
+
+            if (configEtiquetas.ColumnUnits.isActive)
+                exportColumns.Add((configEtiquetas.ColumnUnits.name, x => x.Quantity));
+
+            if (configEtiquetas.ColumnDespacho.isActive)
+                exportColumns.Add((configEtiquetas.ColumnDespacho.name, x => despacho));
+
+            if (exportColumns.Count == 0)
+                throw new Exception("No hay columnas activas en la configuración de Etiquetas.");
+
+            XLWorkbook workbook = new XLWorkbook();
+            var worksheet = workbook.Worksheets.Add("Etiquetas");
+
+            // Encabezados
+            for (int col = 0; col < exportColumns.Count; col++)
+            {
+                worksheet.Cell(1, col + 1).Value = exportColumns[col].Header;
+            }
+
+            // Cargar datos
+            int rowLine = 2;
+            foreach (var item in items)
+            {
+                for (int col = 0; col < exportColumns.Count; col++)
+                {
+                    worksheet.Cell(rowLine, col + 1).Value = exportColumns[col].GetValue(item);
+                }
+                rowLine++;
+            }
+
+            // Convertir el rango en una TABLA de Excel (permite filtros y ordenamiento automático)
+            string lastColLetter = worksheet.Column(exportColumns.Count).ColumnLetter();
+            var range = worksheet.Range($"A1:{lastColLetter}{rowLine - 1}");
+            var table = range.CreateTable();
+            table.Theme = XLTableTheme.TableStyleMedium2;
+
+            // Ajustes de estilo fino
+            worksheet.Columns().AdjustToContents();
+            worksheet.Rows().Height = 20;
+
+            return workbook;
+        }
+
+        /// <summary>
+        /// Nombre del Excel de etiquetas. Es exactamente el configurado por el usuario (lo consume otro sistema).
+        /// </summary>
+        public static string GetLabelsSuggestedFileName()
+        {
+            var configEtiquetas = AppSettings.settings.Etiquetas;
+
+            // Se remueven caracteres inválidos para nombres de archivo en Windows
+            string fileNameBase = string.Concat((configEtiquetas.FileName ?? "").Trim().Split(Path.GetInvalidFileNameChars()));
+
+            if (string.IsNullOrWhiteSpace(fileNameBase))
+                fileNameBase = "Etiquetas";
+
+            return $"{fileNameBase}.xlsx";
+        }
+
+        /// <summary>
+        /// Muestra el diálogo de guardado para el Excel de etiquetas.
+        /// Retorna la ruta elegida o null si el usuario cancela. Debe llamarse desde el hilo de UI.
+        /// </summary>
+        public static string? PromptLabelsSaveLocation(string suggestedFileName, string initialFolder)
+        {
+            using (SaveFileDialog saveDialog = new SaveFileDialog())
+            {
+                saveDialog.Filter = "Excel Workbook (*.xlsx)|*.xlsx";
+                saveDialog.Title = "Guardar etiquetas del despacho";
+
+                if (!string.IsNullOrEmpty(initialFolder))
+                    saveDialog.InitialDirectory = initialFolder;
+
+                saveDialog.FileName = suggestedFileName;
+
+                return saveDialog.ShowDialog() == DialogResult.OK ? saveDialog.FileName : null;
+            }
+        }
+
         public static int CountActiveColumns(OpenOrange openOrange)
         {
             if (openOrange == null)
