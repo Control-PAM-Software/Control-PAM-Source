@@ -22,6 +22,7 @@ namespace Control
             panelFooter = new Panel();
             btnSaveChangesSettings = new Button();
             btnSettingsOticom = new Button();
+            btnSettingsEtiquetas = new Button();
             btnSettingsInomed = new Button();
             btnSettingsBernafon = new Button();
             BtnSettingsAtos = new Button();
@@ -40,6 +41,7 @@ namespace Control
             // 
             panel8.BackColor = Color.FromArgb(45, 45, 48);
             panel8.Controls.Add(panelFooter);
+            panel8.Controls.Add(btnSettingsEtiquetas);
             panel8.Controls.Add(btnSettingsOticom);
             panel8.Controls.Add(btnSettingsInomed);
             panel8.Controls.Add(btnSettingsBernafon);
@@ -85,6 +87,26 @@ namespace Control
             btnSaveChangesSettings.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnSaveChangesSettings.UseVisualStyleBackColor = false;
             btnSaveChangesSettings.Click += btnSaveChangesSettings_Click;
+            // 
+            // btnSettingsEtiquetas
+            // 
+            btnSettingsEtiquetas.Cursor = Cursors.Hand;
+            btnSettingsEtiquetas.Dock = DockStyle.Top;
+            btnSettingsEtiquetas.FlatAppearance.BorderSize = 0;
+            btnSettingsEtiquetas.FlatAppearance.MouseOverBackColor = Color.FromArgb(63, 63, 65);
+            btnSettingsEtiquetas.FlatStyle = FlatStyle.Flat;
+            btnSettingsEtiquetas.Font = new Font("Segoe UI Semibold", 11F);
+            btnSettingsEtiquetas.ForeColor = Color.Gainsboro;
+            btnSettingsEtiquetas.Location = new Point(0, 410);
+            btnSettingsEtiquetas.Name = "btnSettingsEtiquetas";
+            btnSettingsEtiquetas.Padding = new Padding(15, 0, 0, 0);
+            btnSettingsEtiquetas.Size = new Size(220, 55);
+            btnSettingsEtiquetas.TabIndex = 12;
+            btnSettingsEtiquetas.Text = "   Etiquetas";
+            btnSettingsEtiquetas.TextAlign = ContentAlignment.MiddleLeft;
+            btnSettingsEtiquetas.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnSettingsEtiquetas.UseVisualStyleBackColor = true;
+            btnSettingsEtiquetas.Click += BtnSettingsEtiquetas_Click;
             // 
             // btnSettingsOticom
             // 
@@ -285,6 +307,7 @@ namespace Control
         private Button btnSettingsInomed;
         private Button btnSettingsBernafon;
         private Button btnSettingsOticom;
+        private Button btnSettingsEtiquetas;
         private Panel panelFooter;
 
     }

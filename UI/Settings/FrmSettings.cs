@@ -52,6 +52,8 @@ namespace Control
                     return hasSettingsInomedChanged();
                 case FrmSettingsOticom:
                     return hasSettingsOticomChanged();
+                case FrmSettingsEtiquetas:
+                    return hasSettingsEtiquetasChanged();
                 default:
                     return false;
             }
@@ -238,6 +240,27 @@ namespace Control
             return false;
         }
 
+        private bool hasSettingsEtiquetasChanged()
+        {
+            if (activeForm is FrmSettingsEtiquetas frm)
+            {
+                return
+                    AppSettings.settings.Etiquetas.ColumnCode.name != frm.codeEtiquetas.Trim() ||
+                    AppSettings.settings.Etiquetas.ColumnSerialNumber.name != frm.serieEtiquetas.Trim() ||
+                    AppSettings.settings.Etiquetas.ColumnUnits.name != frm.unitsEtiquetas.Trim() ||
+                    AppSettings.settings.Etiquetas.ColumnDespacho.name != frm.despachoEtiquetas.Trim() ||
+
+                    AppSettings.settings.Etiquetas.ColumnCode.isActive != frm.codeEtiquetasActive ||
+                    AppSettings.settings.Etiquetas.ColumnSerialNumber.isActive != frm.serieEtiquetasActive ||
+                    AppSettings.settings.Etiquetas.ColumnUnits.isActive != frm.unitsEtiquetasActive ||
+                    AppSettings.settings.Etiquetas.ColumnDespacho.isActive != frm.despachoEtiquetasActive ||
+
+                    AppSettings.settings.Etiquetas.ExportPath != frm.exportPathEtiquetas.Trim() ||
+                    AppSettings.settings.Etiquetas.FileName != frm.fileNameEtiquetas.Trim();
+            }
+            return false;
+        }
+
 
         #endregion
 
@@ -266,6 +289,9 @@ namespace Control
                     break;
                 case FrmSettingsOticom:
                     saveSettingsOticom();
+                    break;
+                case FrmSettingsEtiquetas:
+                    saveSettingsEtiquetas();
                     break;
             }
         }
@@ -414,6 +440,27 @@ namespace Control
             AppSettings.settings.MovementsBernafon.Codigos_Desglose = codigos_desglose;
         }
 
+        private void saveSettingsEtiquetas()
+        {
+            if (activeForm is FrmSettingsEtiquetas frm)
+            {
+                AppSettings.settings.Etiquetas.ColumnCode.name = frm.codeEtiquetas.Trim();
+                AppSettings.settings.Etiquetas.ColumnSerialNumber.name = frm.serieEtiquetas.Trim();
+                AppSettings.settings.Etiquetas.ColumnUnits.name = frm.unitsEtiquetas.Trim();
+                AppSettings.settings.Etiquetas.ColumnDespacho.name = frm.despachoEtiquetas.Trim();
+
+                AppSettings.settings.Etiquetas.ColumnCode.isActive = frm.codeEtiquetasActive;
+                AppSettings.settings.Etiquetas.ColumnSerialNumber.isActive = frm.serieEtiquetasActive;
+                AppSettings.settings.Etiquetas.ColumnUnits.isActive = frm.unitsEtiquetasActive;
+                AppSettings.settings.Etiquetas.ColumnDespacho.isActive = frm.despachoEtiquetasActive;
+
+                AppSettings.settings.Etiquetas.ExportPath = frm.exportPathEtiquetas.Trim();
+                AppSettings.settings.Etiquetas.FileName = frm.fileNameEtiquetas.Trim();
+
+                saveSettings();
+            }
+        }
+
         private void saveSettingsInomed()
         {
             if (activeForm is FrmSettingsInomed frm)
@@ -550,6 +597,11 @@ namespace Control
         private void btnSettingsOticom_Click(object sender, EventArgs e)
         {
             ShowPanelIfNotActive(typeof(FrmSettingsOticom), "Configuraciones Oticom");
+        }
+
+        private void BtnSettingsEtiquetas_Click(object sender, EventArgs e)
+        {
+            ShowPanelIfNotActive(typeof(FrmSettingsEtiquetas), "Configuraciones Etiquetas");
         }
 
         #endregion
