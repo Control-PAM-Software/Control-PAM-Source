@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using Control.Models.Update;
+using System.Reflection;
 
 namespace Control
 {
@@ -8,31 +9,68 @@ namespace Control
         {
             InitializeComponent();
             LoadAppInfo();
+            _ = LoadChangesetAsync();
         }
 
         private void LoadAppInfo()
         {
             // --- INFORMACIÓN AUTOMÁTICA ---
             Version version = Assembly.GetExecutingAssembly().GetName().Version!;
-            lblVersion.Text = $"Versión: v{version.Major}.{version.Minor}.{version.Build}";
-            lblCopyright.Text = $"© {DateTime.Now.Year} - Agustín Malfatto";
+            lblVersionValue.Text = $"v{version.Major}.{version.Minor}.{version.Build}";
+            lblCopyright.Text = $"© {DateTime.Now.Year} — Agustín Malfatto";
 
-            // --- NOMBRE DE LA APP ---
+            // --- NOMBRE DE LA APP E ÍCONO ---
             lblAppName.Text = "Gestor\nInventario\nPAM";
+            picLogo.Image = Properties.Resources.Information;
 
-            // --- REGISTRO DE CAMBIOS (RichTextBox) ---
+            // El foco queda en el botón para que no aparezca el cursor en el listado
+            ActiveControl = btnOk;
+
+            // --- REGISTRO DE CAMBIOS: estado inicial ---
+            rtbChangeset.Clear();
+            rtbChangeset.AppendText("Cargando cambios…\n");
+            lblChangesetVersion.Text = "…";
+        }
+
+        private async Task LoadChangesetAsync()
+        {
+            UpdateManager updater = new UpdateManager();
+            var info = await updater.GetChangesetAsync();
+
             rtbChangeset.Clear();
 
-            // Título en Negrita
-            rtbChangeset.SelectionFont = new Font("Segoe UI", 10F, FontStyle.Bold);
-            rtbChangeset.AppendText("Registro de Cambios:\n\n");
+            if (info == null)
+            {
+                lblChangesetVersion.Text = "Sin conexión";
+                rtbChangeset.AppendText("Sin conexión y sin historial local disponible.\n");
+                return;
+            }
 
-            // Contenido normal con viñetas
-            rtbChangeset.SelectionFont = new Font("Segoe UI", 9F, FontStyle.Regular);
-            string myChangeset = "• Se incluye botón para agregar extensión LP en Ingreso Accesorios AB.\n\n" +
-                                 "• Se corrige la comparación para valijas bilaterales.\n\n";
+            lblChangesetVersion.Text = $"v{info.version}";
+            if (!string.IsNullOrWhiteSpace(info.release_date))
+            {
+                lblChangesetVersion.Text += $"   •   {info.release_date}";
+            }
 
-            rtbChangeset.AppendText(myChangeset);
+            if (info.changelog != null && info.changelog.Count > 0)
+            {
+                rtbChangeset.SelectionBullet = false;
+                rtbChangeset.SelectionIndent = 0;
+                rtbChangeset.SelectionHangingIndent = 16;
+
+                for (int i = 0; i < info.changelog.Count; i++)
+                {
+                    rtbChangeset.AppendText("•  " + info.changelog[i]);
+                    rtbChangeset.AppendText(i < info.changelog.Count - 1 ? "\r\n\r\n" : "\r\n");
+                }
+
+                rtbChangeset.SelectionHangingIndent = 0;
+            }
+            else
+            {
+                rtbChangeset.SelectionBullet = false;
+                rtbChangeset.AppendText("No hay ChangeLog cargado para esta versión.\n");
+            }
         }
 
         private void btnOk_Click(object sender, EventArgs e)

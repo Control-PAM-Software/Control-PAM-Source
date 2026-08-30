@@ -291,15 +291,19 @@ namespace Control
             {
                 if (ConfirmUpdate(update))
                 {
-                    await updater.ExecuteUpdateAsync(update.url_download);
+                    await updater.ExecuteUpdateAsync(update);
                 }
             }
         }
 
         private bool ConfirmUpdate(UpdateInfo data)
         {
+            string changes = data.changelog != null && data.changelog.Count > 0
+                ? "• " + string.Join("\n• ", data.changelog)
+                : "No hay ChangeLog cargado para esta versión.";
+
             string message = $"Nueva versión disponible: v{data.version}\n\n" +
-                             $"Cambios:\n• {string.Join("\n• ", data.changelog)}\n\n" +
+                             $"Cambios:\n{changes}\n\n" +
                              "¿Deseas descargar e instalar ahora?";
 
             return MessageBox.Show(message, "Actualización Encontrada", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
