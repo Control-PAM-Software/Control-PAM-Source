@@ -521,7 +521,14 @@ namespace Control
                 {
                     ItemAnexo? newItem = Functions.GetItemFromInput(codeInput, eProductLine.Atos);
 
-                    AddNewItem(newItem);
+                    if (newItem != null)
+                    {
+                        AddNewItem(newItem);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al obtener la información del producto.", "Error de lectura", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
 
             }
