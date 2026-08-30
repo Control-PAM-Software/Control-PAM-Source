@@ -5,10 +5,12 @@ namespace Control.Tests.Parsing;
 public class GetItemFromInputEdgeTests
 {
     [Fact]
-    public void GetItemFromInputAtos_TooShort_Throws()
+    public void GetItemFromInputAtos_TooShort_ReturnsNull()
     {
-        // [^4..] con menos de 4 caracteres -> ArgumentOutOfRangeException
-        Assert.ThrowsAny<ArgumentException>(() => Functions.GetItemFromInputAtos("abc"));
+        // Menor a 14 caracteres -> no lanza, devuelve null
+        Assert.Null(Functions.GetItemFromInputAtos("abc"));
+        Assert.Null(Functions.GetItemFromInputAtos(""));
+        Assert.Null(Functions.GetItemFromInputAtos("   "));
     }
 
     [Fact]
@@ -26,12 +28,17 @@ public class GetItemFromInputEdgeTests
     }
 
     [Fact]
-    public void GetItemFromInputAtos_ShortWithout7439_ThrowsOnGetDueDate()
+    public void GetItemFromInputAtos_ShortWithout7439_NoThrowEmptyDate()
     {
-        // 14 chars pero code != 7439 -> GetDueDate hace Substring(14-24) -> throw
+        // 14 chars pero code != 7439 y longitud < 24 -> fecha vacía, no lanza
         string input = "SN12345" + "000" + "9999";
 
-        Assert.ThrowsAny<ArgumentOutOfRangeException>(() => Functions.GetItemFromInputAtos(input));
+        var item = Functions.GetItemFromInputAtos(input);
+
+        Assert.NotNull(item);
+        Assert.Equal("9999", item.CodItem);
+        Assert.Equal("SN12345", item.SerialNumber);
+        Assert.Equal("", item.DueDate);
     }
 
     [Fact]
