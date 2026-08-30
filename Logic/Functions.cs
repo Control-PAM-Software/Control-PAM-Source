@@ -938,21 +938,72 @@ namespace Control.Logic
             return null;
         }
 
-        internal static ItemAnexo? GetItemFromInputAtos(string pCodeInputUser)
+        internal static ItemAnexo? GetItemFromInputAtos(string? pCodeInputUser)
         {
+            if (string.IsNullOrWhiteSpace(pCodeInputUser))
+                return null;
+
+            // Parser GS1: el QR real de Atos usa identificadores de aplicación GS1.
+            // La lectora puede agregar separadores GS1 (ej: '$') que no son datos,
+            // por lo que se sanitizan antes de coincidir con el patrón.
+            string clean = Regex.Replace(pCodeInputUser, "[^0-9A-Za-z]", "");
+
+            // El campo (17) es opcional: el único producto Atos que no tiene
+            // vencimiento es el código 7439, cuyo QR puede venir sin (17).
+            var regex = new Regex(
+                @"^01\d{14}11\d{6}(?:17(?<vto>\d{6}))?10(?<serie>\d+?)240(?<codigo>\d+)$",
+                RegexOptions.Compiled);
+
+            var match = regex.Match(clean);
+            if (match.Success)
+            {
+                string codigo = match.Groups["codigo"].Value;
+                string serie = match.Groups["serie"].Value;
+
+                // El código 7439 es el único producto Atos sin vencimiento: se acepta
+                // con o sin el campo (17) y siempre se registra con vencimiento vacío.
+                string dueDate;
+                if (codigo == "7439")
+                {
+                    dueDate = string.Empty;
+                }
+                else
+                {
+                    dueDate = ConvertDate(match.Groups["vto"].Value, "yyMMdd");
+                    if (string.IsNullOrEmpty(dueDate))
+                        return null;
+                }
+
+                return new ItemAnexo()
+                {
+                    CodItem = codigo,
+                    SerialNumber = serie,
+                    Quantity = 1,
+                    DueDate = dueDate
+                };
+            }
+
+            // Fallback: formato posicional legado (compatibilidad hacia atrás).
+            // Nunca lanzar: ante una entrada demasiado corta se devuelve null.
+            if (pCodeInputUser.Length < 14)
+                return null;
+
             string code = pCodeInputUser[^4..];
             string serial = pCodeInputUser.Substring(pCodeInputUser.Length - 14, 7);
-            string dueDate = code == "7439" ? "" : GetDueDate(pCodeInputUser);
+            string dueDateLegacy = string.Empty;
 
-            ItemAnexo newItem = new ItemAnexo()
+            if (code != "7439" && pCodeInputUser.Length >= 24)
+            {
+                dueDateLegacy = GetDueDate(pCodeInputUser);
+            }
+
+            return new ItemAnexo()
             {
                 CodItem = code,
                 SerialNumber = serial,
                 Quantity = 1,
-                DueDate = dueDate
+                DueDate = dueDateLegacy
             };
-
-            return newItem;
 
             //return (code, serial);
         }
