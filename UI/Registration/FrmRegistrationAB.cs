@@ -315,8 +315,9 @@ namespace Control
                         newItem.Quantity = cantidad;
                         newItem.DueDate = vencimiento;
 
-                        AddNewItem(newItem);
+                        itemsReceived.Add(newItem);
                     }
+                    ReloadDataGridViewReceived();
                     TxtPickCodeReceived.Clear();
                     TxtPickCodeReceived.Focus();
                 }
