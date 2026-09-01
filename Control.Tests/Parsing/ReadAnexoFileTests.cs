@@ -115,6 +115,45 @@ public class ReadAnexoFileTests : IDisposable
     }
 
     [Fact]
+    public void ReadAnexoFile_HtmlGroupsByCodeSerialDueDate()
+    {
+        var path = CreateHtml(
+            "<html><body><table>" +
+            "<thead><tr><th>ArtCode</th><th>Quantity</th><th>Description</th><th>SerialNr</th><th>DueDate</th></tr></thead>" +
+            "<tbody>" +
+            "<tr><td>A1</td><td>2</td><td>D1</td><td>SN1</td><td>01/01/2030</td></tr>" +
+            "<tr><td>A1</td><td>3</td><td>D1</td><td>SN1</td><td>01/01/2030</td></tr>" +
+            "<tr><td>A1</td><td>4</td><td>D1</td><td>SN1</td><td>01/01/2031</td></tr>" +
+            "</tbody></table></body></html>");
+
+        var items = Functions.ReadAnexoFile(path, new Headers());
+
+        Assert.NotNull(items);
+        Assert.Equal(2, items.Count);
+        var sameDate = items.First(x => x.DueDate == "01/01/2030");
+        Assert.Equal(5, sameDate.Quantity);
+        var diffDate = items.First(x => x.DueDate == "01/01/2031");
+        Assert.Equal(4, diffDate.Quantity);
+    }
+
+    [Fact]
+    public void ReadAnexoFile_HtmlGroupItemsFalse_KeepsSeparateRows()
+    {
+        var path = CreateHtml(
+            "<html><body><table>" +
+            "<thead><tr><th>ArtCode</th><th>Quantity</th><th>Description</th><th>SerialNr</th><th>DueDate</th></tr></thead>" +
+            "<tbody>" +
+            "<tr><td>A1</td><td>2</td><td>D1</td><td>SN1</td><td>01/01/2030</td></tr>" +
+            "<tr><td>A1</td><td>3</td><td>D1</td><td>SN1</td><td>01/01/2030</td></tr>" +
+            "</tbody></table></body></html>");
+
+        var items = Functions.ReadAnexoFile(path, new Headers(), groupItems: false);
+
+        Assert.NotNull(items);
+        Assert.Equal(2, items.Count);
+    }
+
+    [Fact]
     public void ReadAnexoFile_XlsxGroupsRepeatedRows()
     {
         var path = CreateXlsx(
