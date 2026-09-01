@@ -47,7 +47,7 @@ namespace Control.Logic
 
                 if (IsHtmlFile(ruta))
                 {
-                    listItems = bringFromHtml(ruta, header);
+                    listItems = bringFromHtml(ruta, header, groupItems);
                     return listItems;
                 }
 
@@ -241,7 +241,7 @@ namespace Control.Logic
         }
 
         // Lectura de archivo si tiene formato Html
-        private static List<ItemAnexo>? bringFromHtml(string ruta, Models.Entities.Headers header)
+        private static List<ItemAnexo>? bringFromHtml(string ruta, Models.Entities.Headers header, bool groupItems = true)
         {
             List<ItemAnexo> itemsAnexo = new List<ItemAnexo>();
             try
@@ -304,7 +304,23 @@ namespace Control.Logic
 
                         decimal qty = getQuantityValue(qtyItem);
 
-                        ItemAnexo existingItem = itemsAnexo.FirstOrDefault(x => x.CodItem == codeItem && x.SerialNumber == serialItem && x.Quantity == qty);
+                        string dueDateString = "";
+                        if (string.IsNullOrEmpty(dueDateItem) || dueDateItem.Contains("2100"))
+                        {
+                            dueDateString = "";
+                        }
+                        else
+                        {
+                            var dateNormalized = NormalizeTwoDigitYearDate(dueDateItem);
+                            if (dateNormalized.HasValue)
+                                dueDateString = dateNormalized.Value.ToString("dd/MM/yyyy");
+                            else
+                                dueDateString = dueDateItem;
+                        }
+
+                        ItemAnexo? existingItem = groupItems
+                            ? itemsAnexo.FirstOrDefault(x => x.CodItem == codeItem && x.SerialNumber == serialItem && x.DueDate == dueDateString)
+                            : null;
 
                         if (existingItem == null)
                         {
@@ -312,21 +328,12 @@ namespace Control.Logic
                             newItem.SerialNumber = serialItem;
                             newItem.Quantity = (int)qty;
                             newItem.Description = descriptionItem;
-                            //newItem.DueDate = !string.IsNullOrEmpty(dueDateItem) ? dueDateItem : "No Aplica";
-
-                            if (string.IsNullOrEmpty(dueDateItem) || dueDateItem.Contains("2100"))
-                            {
-                                newItem.DueDate = "";
-                            }
-                            else
-                            {
-                                newItem.DueDate = dueDateItem;
-                            }
+                            newItem.DueDate = dueDateString;
                             itemsAnexo.Add(newItem);
                         }
                         else
                         {
-                            existingItem.Quantity++;
+                            existingItem.Quantity += (int)qty;
                         }
 
                     }
