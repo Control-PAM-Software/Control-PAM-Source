@@ -957,8 +957,10 @@ namespace Control.Logic
 
             // El campo (17) es opcional: el único producto Atos que no tiene
             // vencimiento es el código 7439, cuyo QR puede venir sin (17).
+            // La serie puede venir en el AI (10) Lote o en el AI (21) Serial,
+            // y puede ser alfanumérica (ej: el 7439 trae "E125348").
             var regex = new Regex(
-                @"^01\d{14}11\d{6}(?:17(?<vto>\d{6}))?10(?<serie>\d+?)240(?<codigo>\d+)$",
+                @"^01\d{14}11\d{6}(?:17(?<vto>\d{6}))?(?:10|21)(?<serie>[A-Za-z0-9]+?)240(?<codigo>[A-Za-z0-9]+)$",
                 RegexOptions.Compiled);
 
             var match = regex.Match(clean);
@@ -991,17 +993,18 @@ namespace Control.Logic
             }
 
             // Fallback: formato posicional legado (compatibilidad hacia atrás).
-            // Nunca lanzar: ante una entrada demasiado corta se devuelve null.
-            if (pCodeInputUser.Length < 14)
+            // Se usa la cadena ya sanitizada (sin separadores GS1 como '$') para
+            // que el ancho fijo no se corra por un carácter no perteneciente a datos.
+            if (clean.Length < 14)
                 return null;
 
-            string code = pCodeInputUser[^4..];
-            string serial = pCodeInputUser.Substring(pCodeInputUser.Length - 14, 7);
+            string code = clean[^4..];
+            string serial = clean.Substring(clean.Length - 14, 7);
             string dueDateLegacy = string.Empty;
 
-            if (code != "7439" && pCodeInputUser.Length >= 24)
+            if (code != "7439" && clean.Length >= 24)
             {
-                dueDateLegacy = GetDueDate(pCodeInputUser);
+                dueDateLegacy = GetDueDate(clean);
             }
 
             return new ItemAnexo()
