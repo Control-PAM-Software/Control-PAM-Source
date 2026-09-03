@@ -241,6 +241,63 @@ public class GetItemFromInputTests
         Assert.Null(Functions.GetItemFromInputAtos(input));
     }
 
+    [Fact]
+    public void GetItemFromInputAtos_Gs1Code7439_Ai21AlphanumericSerial_WithDollar_NoDueDate()
+    {
+        // QR del bug Atos/Pesos: el 7439 trae la serie en el AI (21) alfanumérica
+        // (E125348), sin el campo (17), y la lectora agrega separadores '$'.
+        string input = "01" + "07331791015830" + "11" + "260128" + "$" + "21" + "E125348" + "$" + "240" + "7439";
+
+        var item = Functions.GetItemFromInputAtos(input);
+
+        Assert.NotNull(item);
+        Assert.Equal("7439", item.CodItem);
+        Assert.Equal("E125348", item.SerialNumber);
+        Assert.Equal("", item.DueDate);
+    }
+
+    [Fact]
+    public void GetItemFromInputAtos_Gs1Code7439_Ai21AlphanumericSerial_NoSeparators_NoDueDate()
+    {
+        // Mismo QR sin separadores '$' -> debe parsear igual.
+        string input = "01" + "07331791015830" + "11" + "260128" + "21" + "E125348" + "240" + "7439";
+
+        var item = Functions.GetItemFromInputAtos(input);
+
+        Assert.NotNull(item);
+        Assert.Equal("7439", item.CodItem);
+        Assert.Equal("E125348", item.SerialNumber);
+        Assert.Equal("", item.DueDate);
+    }
+
+    [Fact]
+    public void GetItemFromInputAtos_Gs1Code7439_Ai10NumericSerial_StillWorks()
+    {
+        // El 7439 también puede traer la serie en el AI (10) numérico (formato issue #28).
+        string input = "01" + "07331791005001" + "11" + "250901" + "10" + "2509072" + "240" + "7439";
+
+        var item = Functions.GetItemFromInputAtos(input);
+
+        Assert.NotNull(item);
+        Assert.Equal("7439", item.CodItem);
+        Assert.Equal("2509072", item.SerialNumber);
+        Assert.Equal("", item.DueDate);
+    }
+
+    [Theory]
+    [InlineData("01$07331791015830$11$260128$21$E125348$240$7439")] // separador en cada AI
+    [InlineData("\u001D01\u001D07331791015830\u001D11\u001D260128\u001D21\u001DE125348\u001D240\u001D7439")] // FNC1
+    public void GetItemFromInputAtos_Gs1Code7439_Ai21_VariedSeparators(string input)
+    {
+        // Los separadores GS1 pueden variar según la lectora; todos se sanan igual.
+        var item = Functions.GetItemFromInputAtos(input);
+
+        Assert.NotNull(item);
+        Assert.Equal("7439", item.CodItem);
+        Assert.Equal("E125348", item.SerialNumber);
+        Assert.Equal("", item.DueDate);
+    }
+
     [Theory]
     [InlineData("01123456789012342406543211727010110ABC123305")]
     public void GetItemFromInputInomed_ParsesGs1(string input)
