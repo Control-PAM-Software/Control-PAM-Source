@@ -6,10 +6,10 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
-    <AssemblyVersion>5.5.3</AssemblyVersion>
-	<Version>5.5.3</Version>
+    <AssemblyVersion>5.5.4</AssemblyVersion>
+	<Version>5.5.4</Version>
     <ApplicationIcon>ControlAppIcon.ico</ApplicationIcon>
-    <FileVersion>5.5.3</FileVersion>
+    <FileVersion>5.5.4</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
