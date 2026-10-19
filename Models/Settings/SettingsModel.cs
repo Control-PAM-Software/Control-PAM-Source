@@ -26,6 +26,7 @@ namespace Control.Models.Settings
         public Base_Settings IngresoBernafon { get; set; } = new Base_Settings();
         public Base_Settings InventoryBernafon { get; set; } = new Base_Settings();
         public Movements_Bernafon MovementsBernafon { get; set; } = new Movements_Bernafon();
+        public ConsignacionSettings ConsignacionReporte { get; set; } = new ConsignacionSettings();
 
         public Base_Settings IngresoInomed { get; set; } = new Base_Settings();
         public Base_Settings InventoryInomed { get; set; } = new Base_Settings();

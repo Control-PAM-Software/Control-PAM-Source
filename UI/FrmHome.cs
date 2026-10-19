@@ -268,6 +268,11 @@ namespace Control
             ShowPanelIfNotActive(typeof(FrmMovementsBernafon));
         }
 
+        private void bernafonReporteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowPanelIfNotActive(typeof(FrmReporteBernafon));
+        }
+
         private void acercaDeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowPanelIfNotActive(typeof(FrmAbout));

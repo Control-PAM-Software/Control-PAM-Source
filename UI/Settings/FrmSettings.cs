@@ -48,6 +48,8 @@ namespace Control
                     return hasSettingsAtosChanged();
                 case FrmSettingsBernafon:
                     return hasSettingsBernafonChanged();
+                case FrmSettingsReportes:
+                    return hasSettingsReportesChanged();
                 case FrmSettingsInomed:
                     return hasSettingsInomedChanged();
                 case FrmSettingsOticom:
@@ -174,6 +176,27 @@ namespace Control
             return false;
         }
 
+        private bool hasSettingsReportesChanged()
+        {
+            if (activeForm is FrmSettingsReportes frm)
+            {
+                return
+                    AppSettings.settings.ConsignacionReporte.MovColCode != frm.movCode.Trim() ||
+                    AppSettings.settings.ConsignacionReporte.MovColSerial != frm.movSerial.Trim() ||
+                    AppSettings.settings.ConsignacionReporte.MovColDate != frm.movDate.Trim() ||
+                    AppSettings.settings.ConsignacionReporte.MovColFrom != frm.movFrom.Trim() ||
+                    AppSettings.settings.ConsignacionReporte.MovColTo != frm.movTo.Trim() ||
+
+                    AppSettings.settings.ConsignacionReporte.StockColCode != frm.stockCode.Trim() ||
+                    AppSettings.settings.ConsignacionReporte.StockColSerial != frm.stockSerial.Trim() ||
+                    AppSettings.settings.ConsignacionReporte.StockColDepot != frm.stockDepot.Trim() ||
+                    AppSettings.settings.ConsignacionReporte.StockColQty != frm.stockQty.Trim() ||
+
+                    AppSettings.settings.ConsignacionReporte.PlazoLimite != frm.plazoLimite;
+            }
+            return false;
+        }
+
         // Retorna true si los códigos del gridView para desglose no coinciden con los guardados en Codigos_Desglose
         private bool HasDataGridViewBernafonChanged(FrmSettingsBernafon frm)
         {
@@ -283,6 +306,9 @@ namespace Control
                     break;
                 case FrmSettingsBernafon:
                     saveSettingsBernafon();
+                    break;
+                case FrmSettingsReportes:
+                    saveSettingsReportes();
                     break;
                 case FrmSettingsInomed:
                     saveSettingsInomed();
@@ -406,6 +432,27 @@ namespace Control
 
                 AppSettings.settings.MovementsBernafon.ColumnCode = frm.codeMovements.Trim();
                 AppSettings.settings.MovementsBernafon.ColumnUnits = frm.quantityMovements.Trim();
+
+                saveSettings();
+            }
+        }
+
+        private void saveSettingsReportes()
+        {
+            if (activeForm is FrmSettingsReportes frm)
+            {
+                AppSettings.settings.ConsignacionReporte.MovColCode = frm.movCode.Trim();
+                AppSettings.settings.ConsignacionReporte.MovColSerial = frm.movSerial.Trim();
+                AppSettings.settings.ConsignacionReporte.MovColDate = frm.movDate.Trim();
+                AppSettings.settings.ConsignacionReporte.MovColFrom = frm.movFrom.Trim();
+                AppSettings.settings.ConsignacionReporte.MovColTo = frm.movTo.Trim();
+
+                AppSettings.settings.ConsignacionReporte.StockColCode = frm.stockCode.Trim();
+                AppSettings.settings.ConsignacionReporte.StockColSerial = frm.stockSerial.Trim();
+                AppSettings.settings.ConsignacionReporte.StockColDepot = frm.stockDepot.Trim();
+                AppSettings.settings.ConsignacionReporte.StockColQty = frm.stockQty.Trim();
+
+                AppSettings.settings.ConsignacionReporte.PlazoLimite = frm.plazoLimite;
 
                 saveSettings();
             }
@@ -587,6 +634,11 @@ namespace Control
         private void btnSettingsBernafon_Click(object sender, EventArgs e)
         {
             ShowPanelIfNotActive(typeof(FrmSettingsBernafon), "Configuraciones Bernafon");
+        }
+
+        private void BtnSettingsReportes_Click(object sender, EventArgs e)
+        {
+            ShowPanelIfNotActive(typeof(FrmSettingsReportes), "Configuraciones Reportes");
         }
 
         private void btnSettingsInomed_Click(object sender, EventArgs e)
