@@ -25,4 +25,9 @@
     <Using Include="Xunit" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="Samples\*.xls" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="Samples\*.xlsx" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
 </Project>

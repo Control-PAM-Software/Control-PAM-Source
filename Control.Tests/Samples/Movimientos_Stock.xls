@@ -1,0 +1,734 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><meta http-equiv="content-type" content="application/vnd.ms-excel; charset=UTF-8"><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>Worksheet</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body>
+<table><thead> <th colspan="11"> Executed at 02-09-2026 10:35:32 </th>  </thead><tbody><tr><td colspan="11" >
+Modo : Detalle &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+Fecha : 01-03-2026 - 02-09-2026 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+Aprobado : Si &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</td></tr><tr><td colspan="11" >
+Inválido : No &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+Desde Depósito : 500 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+Hasta Depósito : 401-RMA &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</td></tr></tbody></table>
+<table><thead><tr ><th colspan="11"><h6>Listado de Movimientos de Stock</h6></th></tr></thead></table>
+<table><thead>
+<tr>
+<th colspan="1">Nro.</th>
+<th colspan="1">Fecha</th>
+<th colspan="1">Desde Depósito</th>
+<th colspan="1">Hasta Depósito</th>
+<th colspan="1">Total Cantidad</th>
+<th colspan="1">Comentario</th>
+<th colspan="1">Referencia</th>
+<th colspan="1">Etiquetas</th>
+<th colspan="1">Usuario</th>
+<th colspan="1">Sucursal</th>
+<th colspan="1">Aprobado</th>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</tr></thead><tbody>
+<tr>
+<td >100011425</td>
+<td >17-06-2026</td>
+<td >500</td>
+<td >401-RMA</td>
+<td >1,00</td>
+<td ></td>
+<td ></td>
+<td >116000</td>
+<td >BM</td>
+<td >01</td>
+<td >Si</td>
+</tr>
+<tr>
+<td colspan="7"><table><thead><tr>
+<th>Artículo</th>
+<th>Nombre</th>
+<th>Cant.</th>
+<th>Unidad</th>
+<th>Nro. Serie</th>
+<th>Desde Posición</th>
+<th>Hasta Posición</th>
+</tr></thead><tbody>
+<tr>
+<td>  CI-7132-003  </td>
+<td>  Cubierta para Slim HP, large, silver gray  </td>
+<td>  1,00  </td>
+<td>  UNI  </td>
+<td>  310078304/IC04100959D  </td>
+<td>    </td>
+<td>    </td>
+</tr>
+<tr>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+<td> <b> 1,00 </b> </td>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+</tr>
+</tbody></table><!-- <hr/> --></td>
+</tr>
+<tr>
+<td >100011440</td>
+<td >19-06-2026</td>
+<td >500</td>
+<td >401-RMA</td>
+<td >2,00</td>
+<td >mail lia 19-6-26</td>
+<td ></td>
+<td >116000</td>
+<td >BM</td>
+<td >01</td>
+<td >Si</td>
+</tr>
+<tr>
+<td colspan="7"><table><thead><tr>
+<th>Artículo</th>
+<th>Nombre</th>
+<th>Cant.</th>
+<th>Unidad</th>
+<th>Nro. Serie</th>
+<th>Desde Posición</th>
+<th>Hasta Posición</th>
+</tr></thead><tbody>
+<tr>
+<td>  CI-5322-001  </td>
+<td>  Slim HP Mic 12" 30cm  </td>
+<td>  2,00  </td>
+<td>  UNI  </td>
+<td>  310078305/IC04100959D  </td>
+<td>    </td>
+<td>    </td>
+</tr>
+<tr>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+<td> <b> 2,00 </b> </td>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+</tr>
+</tbody></table><!-- <hr/> --></td>
+</tr>
+<tr>
+<td >100011441</td>
+<td >19-06-2026</td>
+<td >500</td>
+<td >401-RMA</td>
+<td >1,00</td>
+<td >mail lau 19-06-26</td>
+<td ></td>
+<td >116000</td>
+<td >BM</td>
+<td >01</td>
+<td >Si</td>
+</tr>
+<tr>
+<td colspan="7"><table><thead><tr>
+<th>Artículo</th>
+<th>Nombre</th>
+<th>Cant.</th>
+<th>Unidad</th>
+<th>Nro. Serie</th>
+<th>Desde Posición</th>
+<th>Hasta Posición</th>
+</tr></thead><tbody>
+<tr>
+<td>  CI-5320-006  </td>
+<td>  Slim HP 4.25" beige  </td>
+<td>  1,00  </td>
+<td>  UNI  </td>
+<td>  310078285/IC04100959D  </td>
+<td>    </td>
+<td>    </td>
+</tr>
+<tr>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+<td> <b> 1,00 </b> </td>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+</tr>
+</tbody></table><!-- <hr/> --></td>
+</tr>
+<tr>
+<td >100011573</td>
+<td >23-07-2026</td>
+<td >500</td>
+<td >401-RMA</td>
+<td >2,00</td>
+<td >Mail Laura 23-7-26</td>
+<td ></td>
+<td >116000</td>
+<td >BM</td>
+<td >01</td>
+<td >Si</td>
+</tr>
+<tr>
+<td colspan="7"><table><thead><tr>
+<th>Artículo</th>
+<th>Nombre</th>
+<th>Cant.</th>
+<th>Unidad</th>
+<th>Nro. Serie</th>
+<th>Desde Posición</th>
+<th>Hasta Posición</th>
+</tr></thead><tbody>
+<tr>
+<td>  CI-7132-003  </td>
+<td>  Cubierta para Slim HP, large, silver gray  </td>
+<td>  2,00  </td>
+<td>  UNI  </td>
+<td>  310078304/IC04100959D  </td>
+<td>    </td>
+<td>    </td>
+</tr>
+<tr>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+<td> <b> 2,00 </b> </td>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+</tr>
+</tbody></table><!-- <hr/> --></td>
+</tr>
+<tr>
+<td >100011603</td>
+<td >29-07-2026</td>
+<td >500</td>
+<td >401-RMA</td>
+<td >1,00</td>
+<td ></td>
+<td ></td>
+<td >116000</td>
+<td >BM</td>
+<td >01</td>
+<td >Si</td>
+</tr>
+<tr>
+<td colspan="7"><table><thead><tr>
+<th>Artículo</th>
+<th>Nombre</th>
+<th>Cant.</th>
+<th>Unidad</th>
+<th>Nro. Serie</th>
+<th>Desde Posición</th>
+<th>Hasta Posición</th>
+</tr></thead><tbody>
+<tr>
+<td>  CI-5322-001  </td>
+<td>  Slim HP Mic 12" 30cm  </td>
+<td>  1,00  </td>
+<td>  UNI  </td>
+<td>  310078305/IC04100959D  </td>
+<td>    </td>
+<td>    </td>
+</tr>
+<tr>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+<td> <b> 1,00 </b> </td>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+</tr>
+</tbody></table><!-- <hr/> --></td>
+</tr>
+<tr>
+<td >100011638</td>
+<td >06-08-2026</td>
+<td >500</td>
+<td >401-RMA</td>
+<td >1,00</td>
+<td >Mail Lau 6-8-26</td>
+<td ></td>
+<td >116000</td>
+<td >BM</td>
+<td >01</td>
+<td >Si</td>
+</tr>
+<tr>
+<td colspan="7"><table><thead><tr>
+<th>Artículo</th>
+<th>Nombre</th>
+<th>Cant.</th>
+<th>Unidad</th>
+<th>Nro. Serie</th>
+<th>Desde Posición</th>
+<th>Hasta Posición</th>
+</tr></thead><tbody>
+<tr>
+<td>  CI-5320-006  </td>
+<td>  Slim HP 4.25" beige  </td>
+<td>  1,00  </td>
+<td>  UNI  </td>
+<td>  310078285/IC04100959D  </td>
+<td>    </td>
+<td>    </td>
+</tr>
+<tr>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+<td> <b> 1,00 </b> </td>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+</tr>
+</tbody></table><!-- <hr/> --></td>
+</tr>
+<tr>
+<td >100011721</td>
+<td >21-08-2026</td>
+<td >500</td>
+<td >401-RMA</td>
+<td >2,00</td>
+<td >mail Lau 21-8-26</td>
+<td ></td>
+<td >116000</td>
+<td >BM</td>
+<td >01</td>
+<td >Si</td>
+</tr>
+<tr>
+<td colspan="7"><table><thead><tr>
+<th>Artículo</th>
+<th>Nombre</th>
+<th>Cant.</th>
+<th>Unidad</th>
+<th>Nro. Serie</th>
+<th>Desde Posición</th>
+<th>Hasta Posición</th>
+</tr></thead><tbody>
+<tr>
+<td>  CI-5320-008  </td>
+<td>  Slim HP 4.25" brown  </td>
+<td>  1,00  </td>
+<td>  UNI  </td>
+<td>  310039634  </td>
+<td>    </td>
+<td>    </td>
+</tr>
+<tr>
+<td>  CI-5320-008  </td>
+<td>  Slim HP 4.25" brown  </td>
+<td>  1,00  </td>
+<td>  UNI  </td>
+<td>  310039635  </td>
+<td>    </td>
+<td>    </td>
+</tr>
+<tr>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+<td> <b> 2,00 </b> </td>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+</tr>
+</tbody></table><!-- <hr/> --></td>
+</tr>
+<tr>
+<td >100011735</td>
+<td >25-08-2026</td>
+<td >500</td>
+<td >401-RMA</td>
+<td >1,00</td>
+<td ></td>
+<td ></td>
+<td >116000</td>
+<td >BM</td>
+<td >01</td>
+<td >Si</td>
+</tr>
+<tr>
+<td colspan="7"><table><thead><tr>
+<th>Artículo</th>
+<th>Nombre</th>
+<th>Cant.</th>
+<th>Unidad</th>
+<th>Nro. Serie</th>
+<th>Desde Posición</th>
+<th>Hasta Posición</th>
+</tr></thead><tbody>
+<tr>
+<td>  CI-5320-003  </td>
+<td>  Slim HP 3.5" brown  </td>
+<td>  1,00  </td>
+<td>  UNI  </td>
+<td>  310110780/IC04146922D  </td>
+<td>    </td>
+<td>    </td>
+</tr>
+<tr>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+<td> <b> 1,00 </b> </td>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+</tr>
+</tbody></table><!-- <hr/> --></td>
+</tr>
+<tr>
+<td >100011740</td>
+<td >25-08-2026</td>
+<td >500</td>
+<td >401-RMA</td>
+<td >1,00</td>
+<td >RMA MAIL LAU 25-8-26</td>
+<td ></td>
+<td >116000</td>
+<td >BM</td>
+<td >01</td>
+<td >Si</td>
+</tr>
+<tr>
+<td colspan="7"><table><thead><tr>
+<th>Artículo</th>
+<th>Nombre</th>
+<th>Cant.</th>
+<th>Unidad</th>
+<th>Nro. Serie</th>
+<th>Desde Posición</th>
+<th>Hasta Posición</th>
+</tr></thead><tbody>
+<tr>
+<td>  CI-5322-001  </td>
+<td>  Slim HP Mic 12" 30cm  </td>
+<td>  1,00  </td>
+<td>  UNI  </td>
+<td>  310194741  </td>
+<td>    </td>
+<td>    </td>
+</tr>
+<tr>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+<td> <b> 1,00 </b> </td>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+</tr>
+</tbody></table><!-- <hr/> --></td>
+</tr>
+<tr>
+<td >100011743</td>
+<td >25-08-2026</td>
+<td >500</td>
+<td >401-RMA</td>
+<td >1,00</td>
+<td >mail lau 25-8-26</td>
+<td ></td>
+<td >116000</td>
+<td >BM</td>
+<td >01</td>
+<td >Si</td>
+</tr>
+<tr>
+<td colspan="7"><table><thead><tr>
+<th>Artículo</th>
+<th>Nombre</th>
+<th>Cant.</th>
+<th>Unidad</th>
+<th>Nro. Serie</th>
+<th>Desde Posición</th>
+<th>Hasta Posición</th>
+</tr></thead><tbody>
+<tr>
+<td>  CI-5322-001  </td>
+<td>  Slim HP Mic 12" 30cm  </td>
+<td>  1,00  </td>
+<td>  UNI  </td>
+<td>  310194741  </td>
+<td>    </td>
+<td>    </td>
+</tr>
+<tr>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+<td> <b> 1,00 </b> </td>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+</tr>
+</tbody></table><!-- <hr/> --></td>
+</tr>
+<tr>
+<td >100011750</td>
+<td >26-08-2026</td>
+<td >500</td>
+<td >401-RMA</td>
+<td >2,00</td>
+<td ></td>
+<td ></td>
+<td >116000</td>
+<td >BM</td>
+<td >01</td>
+<td >Si</td>
+</tr>
+<tr>
+<td colspan="7"><table><thead><tr>
+<th>Artículo</th>
+<th>Nombre</th>
+<th>Cant.</th>
+<th>Unidad</th>
+<th>Nro. Serie</th>
+<th>Desde Posición</th>
+<th>Hasta Posición</th>
+</tr></thead><tbody>
+<tr>
+<td>  CI-5555-120  </td>
+<td>  Batería Marvel/Sky, STANDARD, beige  </td>
+<td>  1,00  </td>
+<td>  UNI  </td>
+<td>  310194568  </td>
+<td>    </td>
+<td>    </td>
+</tr>
+<tr>
+<td>  CI-5555-120  </td>
+<td>  Batería Marvel/Sky, STANDARD, beige  </td>
+<td>  1,00  </td>
+<td>  UNI  </td>
+<td>  310078339/IC04100170L  </td>
+<td>    </td>
+<td>    </td>
+</tr>
+<tr>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+<td> <b> 2,00 </b> </td>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+</tr>
+</tbody></table><!-- <hr/> --></td>
+</tr>
+<tr>
+<td >100011752</td>
+<td >26-08-2026</td>
+<td >500</td>
+<td >401-RMA</td>
+<td >1,00</td>
+<td ></td>
+<td ></td>
+<td >116000</td>
+<td >BM</td>
+<td >01</td>
+<td >Si</td>
+</tr>
+<tr>
+<td colspan="7"><table><thead><tr>
+<th>Artículo</th>
+<th>Nombre</th>
+<th>Cant.</th>
+<th>Unidad</th>
+<th>Nro. Serie</th>
+<th>Desde Posición</th>
+<th>Hasta Posición</th>
+</tr></thead><tbody>
+<tr>
+<td>  CI-5555-120  </td>
+<td>  Batería Marvel/Sky, STANDARD, beige  </td>
+<td>  1,00  </td>
+<td>  UNI  </td>
+<td>  310078339/IC04100170L  </td>
+<td>    </td>
+<td>    </td>
+</tr>
+<tr>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+<td> <b> 1,00 </b> </td>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+</tr>
+</tbody></table><!-- <hr/> --></td>
+</tr>
+<tr>
+<td >100011765</td>
+<td >27-08-2026</td>
+<td >500</td>
+<td >401-RMA</td>
+<td >2,00</td>
+<td >mail lau 27/8/26</td>
+<td ></td>
+<td >116000</td>
+<td >BM</td>
+<td >01</td>
+<td >Si</td>
+</tr>
+<tr>
+<td colspan="7"><table><thead><tr>
+<th>Artículo</th>
+<th>Nombre</th>
+<th>Cant.</th>
+<th>Unidad</th>
+<th>Nro. Serie</th>
+<th>Desde Posición</th>
+<th>Hasta Posición</th>
+</tr></thead><tbody>
+<tr>
+<td>  CI-5322-001  </td>
+<td>  Slim HP Mic 12" 30cm  </td>
+<td>  1,00  </td>
+<td>  UNI  </td>
+<td>  310194741  </td>
+<td>    </td>
+<td>    </td>
+</tr>
+<tr>
+<td>  CI-5322-001  </td>
+<td>  Slim HP Mic 12" 30cm  </td>
+<td>  1,00  </td>
+<td>  UNI  </td>
+<td>  310196098  </td>
+<td>    </td>
+<td>    </td>
+</tr>
+<tr>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+<td> <b> 2,00 </b> </td>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+</tr>
+</tbody></table><!-- <hr/> --></td>
+</tr>
+<tr>
+<td >100011767</td>
+<td >28-08-2026</td>
+<td >500</td>
+<td >401-RMA</td>
+<td >1,00</td>
+<td >mail lau 28-08-26</td>
+<td ></td>
+<td >116000</td>
+<td >BM</td>
+<td >01</td>
+<td >Si</td>
+</tr>
+<tr>
+<td colspan="7"><table><thead><tr>
+<th>Artículo</th>
+<th>Nombre</th>
+<th>Cant.</th>
+<th>Unidad</th>
+<th>Nro. Serie</th>
+<th>Desde Posición</th>
+<th>Hasta Posición</th>
+</tr></thead><tbody>
+<tr>
+<td>  CI-5320-003  </td>
+<td>  Slim HP 3.5" brown  </td>
+<td>  1,00  </td>
+<td>  UNI  </td>
+<td>  310194574  </td>
+<td>    </td>
+<td>    </td>
+</tr>
+<tr>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+<td> <b> 1,00 </b> </td>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+</tr>
+</tbody></table><!-- <hr/> --></td>
+</tr>
+<tr>
+<td> <b> Registros: 14 </b> </td>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+<td> <b> 19,00 </b> </td>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+<td> <b>  </b> </td>
+</tr>
+</tbody></table>
+</body></html>

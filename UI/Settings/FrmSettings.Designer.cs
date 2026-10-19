@@ -25,6 +25,7 @@ namespace Control
             btnSettingsEtiquetas = new Button();
             btnSettingsInomed = new Button();
             btnSettingsBernafon = new Button();
+            btnSettingsReportes = new Button();
             BtnSettingsAtos = new Button();
             BtnSettingsAB = new Button();
             BtnSettingsSystem = new Button();
@@ -44,6 +45,7 @@ namespace Control
             panel8.Controls.Add(btnSettingsEtiquetas);
             panel8.Controls.Add(btnSettingsOticom);
             panel8.Controls.Add(btnSettingsInomed);
+            panel8.Controls.Add(btnSettingsReportes);
             panel8.Controls.Add(btnSettingsBernafon);
             panel8.Controls.Add(BtnSettingsAtos);
             panel8.Controls.Add(BtnSettingsAB);
@@ -97,11 +99,11 @@ namespace Control
             btnSettingsEtiquetas.FlatStyle = FlatStyle.Flat;
             btnSettingsEtiquetas.Font = new Font("Segoe UI Semibold", 11F);
             btnSettingsEtiquetas.ForeColor = Color.Gainsboro;
-            btnSettingsEtiquetas.Location = new Point(0, 410);
+            btnSettingsEtiquetas.Location = new Point(0, 465);
             btnSettingsEtiquetas.Name = "btnSettingsEtiquetas";
             btnSettingsEtiquetas.Padding = new Padding(15, 0, 0, 0);
             btnSettingsEtiquetas.Size = new Size(220, 55);
-            btnSettingsEtiquetas.TabIndex = 12;
+            btnSettingsEtiquetas.TabIndex = 13;
             btnSettingsEtiquetas.Text = "   Etiquetas";
             btnSettingsEtiquetas.TextAlign = ContentAlignment.MiddleLeft;
             btnSettingsEtiquetas.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -117,11 +119,11 @@ namespace Control
             btnSettingsOticom.FlatStyle = FlatStyle.Flat;
             btnSettingsOticom.Font = new Font("Segoe UI Semibold", 11F);
             btnSettingsOticom.ForeColor = Color.Gainsboro;
-            btnSettingsOticom.Location = new Point(0, 355);
+            btnSettingsOticom.Location = new Point(0, 410);
             btnSettingsOticom.Name = "btnSettingsOticom";
             btnSettingsOticom.Padding = new Padding(15, 0, 0, 0);
             btnSettingsOticom.Size = new Size(220, 55);
-            btnSettingsOticom.TabIndex = 11;
+            btnSettingsOticom.TabIndex = 12;
             btnSettingsOticom.Text = "   Oticom";
             btnSettingsOticom.TextAlign = ContentAlignment.MiddleLeft;
             btnSettingsOticom.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -137,11 +139,11 @@ namespace Control
             btnSettingsInomed.FlatStyle = FlatStyle.Flat;
             btnSettingsInomed.Font = new Font("Segoe UI Semibold", 11F);
             btnSettingsInomed.ForeColor = Color.Gainsboro;
-            btnSettingsInomed.Location = new Point(0, 300);
+            btnSettingsInomed.Location = new Point(0, 355);
             btnSettingsInomed.Name = "btnSettingsInomed";
             btnSettingsInomed.Padding = new Padding(15, 0, 0, 0);
             btnSettingsInomed.Size = new Size(220, 55);
-            btnSettingsInomed.TabIndex = 10;
+            btnSettingsInomed.TabIndex = 11;
             btnSettingsInomed.Text = "   Inomed";
             btnSettingsInomed.TextAlign = ContentAlignment.MiddleLeft;
             btnSettingsInomed.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -167,6 +169,26 @@ namespace Control
             btnSettingsBernafon.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnSettingsBernafon.UseVisualStyleBackColor = true;
             btnSettingsBernafon.Click += btnSettingsBernafon_Click;
+            // 
+            // btnSettingsReportes
+            // 
+            btnSettingsReportes.Cursor = Cursors.Hand;
+            btnSettingsReportes.Dock = DockStyle.Top;
+            btnSettingsReportes.FlatAppearance.BorderSize = 0;
+            btnSettingsReportes.FlatAppearance.MouseOverBackColor = Color.FromArgb(63, 63, 65);
+            btnSettingsReportes.FlatStyle = FlatStyle.Flat;
+            btnSettingsReportes.Font = new Font("Segoe UI Semibold", 11F);
+            btnSettingsReportes.ForeColor = Color.Gainsboro;
+            btnSettingsReportes.Location = new Point(0, 300);
+            btnSettingsReportes.Name = "btnSettingsReportes";
+            btnSettingsReportes.Padding = new Padding(15, 0, 0, 0);
+            btnSettingsReportes.Size = new Size(220, 55);
+            btnSettingsReportes.TabIndex = 10;
+            btnSettingsReportes.Text = "   Reportes";
+            btnSettingsReportes.TextAlign = ContentAlignment.MiddleLeft;
+            btnSettingsReportes.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnSettingsReportes.UseVisualStyleBackColor = true;
+            btnSettingsReportes.Click += BtnSettingsReportes_Click;
             // 
             // BtnSettingsAtos
             // 
@@ -306,6 +328,7 @@ namespace Control
         private Button BtnSettingsAtos;
         private Button btnSettingsInomed;
         private Button btnSettingsBernafon;
+        private Button btnSettingsReportes;
         private Button btnSettingsOticom;
         private Button btnSettingsEtiquetas;
         private Panel panelFooter;

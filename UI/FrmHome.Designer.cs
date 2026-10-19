@@ -35,6 +35,8 @@ namespace Control
             oticomToolStripMenuItem1 = new ToolStripMenuItem();
             movimientoToolStripMenuItem = new ToolStripMenuItem();
             bernafonToolStripMenuItem1 = new ToolStripMenuItem();
+            reportesToolStripMenuItem = new ToolStripMenuItem();
+            bernafonReporteToolStripMenuItem = new ToolStripMenuItem();
             configuraciónToolStripMenuItem = new ToolStripMenuItem();
             acercaDeToolStripMenuItem = new ToolStripMenuItem();
             salirToolStripMenuItem = new ToolStripMenuItem();
@@ -47,7 +49,7 @@ namespace Control
             menuStrip1.Font = new Font("Segoe UI Semibold", 10F);
             menuStrip1.ForeColor = Color.White;
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { stockToolStripMenuItem, inventarioToolStripMenuItem1, movimientoToolStripMenuItem, configuraciónToolStripMenuItem, acercaDeToolStripMenuItem, salirToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { stockToolStripMenuItem, inventarioToolStripMenuItem1, movimientoToolStripMenuItem, reportesToolStripMenuItem, configuraciónToolStripMenuItem, acercaDeToolStripMenuItem, salirToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new Padding(8, 6, 0, 6);
@@ -160,6 +162,22 @@ namespace Control
             bernafonToolStripMenuItem1.Text = "Bernafon";
             bernafonToolStripMenuItem1.Click += bernafonToolStripMenuItem1_Click_1;
             // 
+            // reportesToolStripMenuItem
+            // 
+            reportesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { bernafonReporteToolStripMenuItem });
+            reportesToolStripMenuItem.ForeColor = Color.White;
+            reportesToolStripMenuItem.Margin = new Padding(5, 0, 5, 0);
+            reportesToolStripMenuItem.Name = "reportesToolStripMenuItem";
+            reportesToolStripMenuItem.Size = new Size(67, 23);
+            reportesToolStripMenuItem.Text = "Reportes";
+            // 
+            // bernafonReporteToolStripMenuItem
+            // 
+            bernafonReporteToolStripMenuItem.Name = "bernafonReporteToolStripMenuItem";
+            bernafonReporteToolStripMenuItem.Size = new Size(134, 24);
+            bernafonReporteToolStripMenuItem.Text = "Bernafon";
+            bernafonReporteToolStripMenuItem.Click += bernafonReporteToolStripMenuItem_Click;
+            // 
             // configuraciónToolStripMenuItem
             // 
             configuraciónToolStripMenuItem.ForeColor = Color.White;
@@ -224,8 +242,10 @@ namespace Control
         private ToolStripMenuItem valijasToolStripMenuItem;
         private ToolStripMenuItem oticomToolStripMenuItem;
         private ToolStripMenuItem oticomToolStripMenuItem1;
-        private ToolStripMenuItem movimientoToolStripMenuItem;
-        private ToolStripMenuItem bernafonToolStripMenuItem1;
+private ToolStripMenuItem movimientoToolStripMenuItem;
+private ToolStripMenuItem bernafonToolStripMenuItem1;
+private ToolStripMenuItem reportesToolStripMenuItem;
+private ToolStripMenuItem bernafonReporteToolStripMenuItem;
         private ToolStripMenuItem acercaDeToolStripMenuItem;
         private ToolStripMenuItem salirToolStripMenuItem;
     }
