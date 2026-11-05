@@ -14,6 +14,9 @@
 
   <ItemGroup>
     <Content Include="ControlAppIcon.ico" />
+    <Content Include="ControlDb\articulos_descripcion.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
