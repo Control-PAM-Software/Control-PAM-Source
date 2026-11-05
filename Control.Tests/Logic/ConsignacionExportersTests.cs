@@ -53,7 +53,7 @@ namespace Control.Tests.Logic
                 Assert.Equal("Control de Consignaciones - Bernafon", ws.Cell(1, 1).Value.ToString());
                 Assert.Contains("Series: 3", ws.Cell(2, 1).Value.ToString());
 
-                string[] esperados = { "Serie", "Código", "Depósito Actual", "Fecha Salida", "Días Transcurridos", "Entregado", "Estado" };
+                string[] esperados = { "Serie", "Código", "Descripción", "Depósito Actual", "Fecha Salida", "Días Transcurridos", "Entregado", "Estado" };
                 for (int c = 0; c < esperados.Length; c++)
                 {
                     Assert.Equal(esperados[c], ws.Cell(4, c + 1).Value.ToString());
@@ -61,18 +61,19 @@ namespace Control.Tests.Logic
 
                 Assert.Equal("AAA100", ws.Cell(5, 1).Value.ToString());
                 Assert.Equal("240319", ws.Cell(5, 2).Value.ToString());
-                Assert.Equal("200", ws.Cell(5, 3).Value.ToString());
-                Assert.Equal("04/03/2026", ws.Cell(5, 4).Value.ToString());
-                Assert.Equal(12, ws.Cell(5, 5).GetValue<int>());
-                Assert.Equal("No", ws.Cell(5, 6).Value.ToString());
-                Assert.Equal("Consignación en Plazo", ws.Cell(5, 7).Value.ToString());
+                Assert.Equal("", ws.Cell(5, 3).Value.ToString());
+                Assert.Equal("200", ws.Cell(5, 4).Value.ToString());
+                Assert.Equal("04/03/2026", ws.Cell(5, 5).Value.ToString());
+                Assert.Equal(12, ws.Cell(5, 6).GetValue<int>());
+                Assert.Equal("No", ws.Cell(5, 7).Value.ToString());
+                Assert.Equal("Consignación en Plazo", ws.Cell(5, 8).Value.ToString());
 
                 Assert.Equal(3, ws.LastRowUsed()?.RowNumber() - 4);
 
                 // Colores de estado
-                Assert.Equal(System.Drawing.ColorTranslator.FromHtml("#FFF3CD").ToArgb(), ws.Cell(5, 7).Style.Fill.BackgroundColor.Color.ToArgb());
-                Assert.Equal(System.Drawing.ColorTranslator.FromHtml("#F8D7DA").ToArgb(), ws.Cell(6, 7).Style.Fill.BackgroundColor.Color.ToArgb());
-                Assert.Equal(System.Drawing.ColorTranslator.FromHtml("#D4EDD8").ToArgb(), ws.Cell(7, 7).Style.Fill.BackgroundColor.Color.ToArgb());
+                Assert.Equal(System.Drawing.ColorTranslator.FromHtml("#FFF3CD").ToArgb(), ws.Cell(5, 8).Style.Fill.BackgroundColor.Color.ToArgb());
+                Assert.Equal(System.Drawing.ColorTranslator.FromHtml("#F8D7DA").ToArgb(), ws.Cell(6, 8).Style.Fill.BackgroundColor.Color.ToArgb());
+                Assert.Equal(System.Drawing.ColorTranslator.FromHtml("#D4EDD8").ToArgb(), ws.Cell(7, 8).Style.Fill.BackgroundColor.Color.ToArgb());
             }
             finally
             {
@@ -96,8 +97,8 @@ namespace Control.Tests.Logic
                 using var wb = new XLWorkbook(ruta);
                 var ws = wb.Worksheet("Bernafon");
 
-                Assert.Equal(System.Drawing.ColorTranslator.FromHtml("#FFF9E6").ToArgb(), ws.Cell(5, 7).Style.Fill.BackgroundColor.Color.ToArgb());
-                Assert.Equal("Sí", ws.Cell(6, 6).Value.ToString());
+                Assert.Equal(System.Drawing.ColorTranslator.FromHtml("#FFF9E6").ToArgb(), ws.Cell(5, 8).Style.Fill.BackgroundColor.Color.ToArgb());
+                Assert.Equal("Sí", ws.Cell(6, 7).Value.ToString());
             }
             finally
             {
