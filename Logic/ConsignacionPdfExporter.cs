@@ -33,13 +33,14 @@ namespace Control.Logic
 
         private static readonly Columna[] Columnas =
         {
-            new Columna { Titulo = "Serie", Peso = 130, Alineacion = 'I' },
-            new Columna { Titulo = "Código", Peso = 95, Alineacion = 'I' },
-            new Columna { Titulo = "Depósito Actual", Peso = 85, Alineacion = 'I' },
-            new Columna { Titulo = "Fecha Salida", Peso = 92, Alineacion = 'I' },
-            new Columna { Titulo = "Días", Peso = 65, Alineacion = 'D' },
-            new Columna { Titulo = "Entregado", Peso = 80, Alineacion = 'C' },
-            new Columna { Titulo = "Estado", Peso = 195, Alineacion = 'I' }
+            new Columna { Titulo = "Serie", Peso = 110, Alineacion = 'I' },
+            new Columna { Titulo = "Código", Peso = 80, Alineacion = 'I' },
+            new Columna { Titulo = "Descripción", Peso = 190, Alineacion = 'I' },
+            new Columna { Titulo = "Depósito Actual", Peso = 75, Alineacion = 'I' },
+            new Columna { Titulo = "Fecha Salida", Peso = 80, Alineacion = 'I' },
+            new Columna { Titulo = "Días", Peso = 55, Alineacion = 'D' },
+            new Columna { Titulo = "Entregado", Peso = 70, Alineacion = 'C' },
+            new Columna { Titulo = "Estado", Peso = 165, Alineacion = 'I' }
         };
 
         public static void Exportar(IReadOnlyList<ItemConsignacion> items, string rutaDestino, DateTime fechaCorte)
@@ -136,10 +137,11 @@ namespace Control.Logic
             {
                 0 => item.Serial,
                 1 => item.Code,
-                2 => item.CurrentDepot,
-                3 => item.DepartureDate,
-                4 => item.DaysElapsed.ToString(CultureInfo.InvariantCulture),
-                5 => item.Delivered ? "Sí" : "No",
+                2 => item.Description,
+                3 => item.CurrentDepot,
+                4 => item.DepartureDate,
+                5 => item.DaysElapsed.ToString(CultureInfo.InvariantCulture),
+                6 => item.Delivered ? "Sí" : "No",
                 _ => ConsignacionesLogic.EstadoTexto(item.State)
             };
         }

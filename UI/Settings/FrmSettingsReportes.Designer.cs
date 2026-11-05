@@ -53,7 +53,17 @@ namespace Control
             txtStockDepot = new TextBox();
             txtStockQty = new TextBox();
             numPlazoLimite = new NumericUpDown();
+            grpDescripciones = new GroupBox();
+            gdvDescripciones = new DataGridView();
+            colCodigoDesc = new DataGridViewTextBoxColumn();
+            colDescripcion = new DataGridViewTextBoxColumn();
+            panelBtnsDesc = new Panel();
+            btnExportDescripciones = new Button();
+            btnImportDescripciones = new Button();
             ((System.ComponentModel.ISupportInitialize)numPlazoLimite).BeginInit();
+            grpDescripciones.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)gdvDescripciones).BeginInit();
+            panelBtnsDesc.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -63,7 +73,7 @@ namespace Control
             label1.ForeColor = Color.FromArgb(39, 39, 58);
             label1.Location = new Point(25, 20);
             label1.Name = "label1";
-            label1.Size = new Size(334, 30);
+            label1.Size = new Size(342, 30);
             label1.TabIndex = 0;
             label1.Text = "Listado de Movimientos de Stock";
             // 
@@ -74,7 +84,7 @@ namespace Control
             label2.ForeColor = Color.FromArgb(39, 39, 58);
             label2.Location = new Point(480, 20);
             label2.Name = "label2";
-            label2.Size = new Size(220, 30);
+            label2.Size = new Size(244, 30);
             label2.TabIndex = 1;
             label2.Text = "Listado de Stock Actual";
             // 
@@ -85,7 +95,7 @@ namespace Control
             label18.ForeColor = Color.FromArgb(39, 39, 58);
             label18.Location = new Point(25, 255);
             label18.Name = "label18";
-            label18.Size = new Size(96, 30);
+            label18.Size = new Size(90, 30);
             label18.TabIndex = 2;
             label18.Text = "General";
             // 
@@ -250,12 +260,88 @@ namespace Control
             numPlazoLimite.Size = new Size(120, 23);
             numPlazoLimite.TabIndex = 28;
             // 
+            // grpDescripciones
+            // 
+            grpDescripciones.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            grpDescripciones.Controls.Add(gdvDescripciones);
+            grpDescripciones.Controls.Add(panelBtnsDesc);
+            grpDescripciones.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            grpDescripciones.ForeColor = Color.FromArgb(39, 39, 58);
+            grpDescripciones.Location = new Point(349, 255);
+            grpDescripciones.Name = "grpDescripciones";
+            grpDescripciones.Size = new Size(570, 453);
+            grpDescripciones.TabIndex = 29;
+            grpDescripciones.TabStop = false;
+            grpDescripciones.Text = "Descripción de Artículos (Reporte Bernafon)";
+            // 
+            // gdvDescripciones
+            // 
+            gdvDescripciones.AllowUserToResizeRows = false;
+            gdvDescripciones.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            gdvDescripciones.BackgroundColor = Color.White;
+            gdvDescripciones.BorderStyle = BorderStyle.None;
+            gdvDescripciones.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gdvDescripciones.Columns.AddRange(new DataGridViewColumn[] { colCodigoDesc, colDescripcion });
+            gdvDescripciones.Dock = DockStyle.Fill;
+            gdvDescripciones.EnableHeadersVisualStyles = false;
+            gdvDescripciones.Location = new Point(3, 57);
+            gdvDescripciones.Name = "gdvDescripciones";
+            gdvDescripciones.RowHeadersWidth = 30;
+            gdvDescripciones.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            gdvDescripciones.Size = new Size(564, 393);
+            gdvDescripciones.TabIndex = 1;
+            gdvDescripciones.RowPostPaint += dataGridViewDescripciones_RowPostPaint;
+            gdvDescripciones.KeyDown += gdvDescripciones_KeyDown;
+            // 
+            // colCodigoDesc
+            // 
+            colCodigoDesc.FillWeight = 40F;
+            colCodigoDesc.HeaderText = "Código";
+            colCodigoDesc.Name = "colCodigoDesc";
+            // 
+            // colDescripcion
+            // 
+            colDescripcion.FillWeight = 160F;
+            colDescripcion.HeaderText = "Descripción";
+            colDescripcion.Name = "colDescripcion";
+            // 
+            // panelBtnsDesc
+            // 
+            panelBtnsDesc.Controls.Add(btnExportDescripciones);
+            panelBtnsDesc.Controls.Add(btnImportDescripciones);
+            panelBtnsDesc.Dock = DockStyle.Top;
+            panelBtnsDesc.Location = new Point(3, 19);
+            panelBtnsDesc.Name = "panelBtnsDesc";
+            panelBtnsDesc.Size = new Size(564, 38);
+            panelBtnsDesc.TabIndex = 0;
+            // 
+            // btnExportDescripciones
+            // 
+            btnExportDescripciones.Location = new Point(101, 7);
+            btnExportDescripciones.Name = "btnExportDescripciones";
+            btnExportDescripciones.Size = new Size(90, 25);
+            btnExportDescripciones.TabIndex = 1;
+            btnExportDescripciones.Text = "Exportar";
+            btnExportDescripciones.UseVisualStyleBackColor = true;
+            btnExportDescripciones.Click += btnExportDescripciones_Click;
+            // 
+            // btnImportDescripciones
+            // 
+            btnImportDescripciones.Location = new Point(5, 7);
+            btnImportDescripciones.Name = "btnImportDescripciones";
+            btnImportDescripciones.Size = new Size(90, 25);
+            btnImportDescripciones.TabIndex = 0;
+            btnImportDescripciones.Text = "Importar";
+            btnImportDescripciones.UseVisualStyleBackColor = true;
+            btnImportDescripciones.Click += btnImportDescripciones_Click;
+            // 
             // FrmSettingsReportes
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(250, 251, 252);
-            ClientSize = new Size(950, 480);
+            ClientSize = new Size(950, 720);
+            Controls.Add(grpDescripciones);
             Controls.Add(label1);
             Controls.Add(label2);
             Controls.Add(label18);
@@ -283,6 +369,9 @@ namespace Control
             Text = "Configuración Reportes";
             Load += FrmSettingsReportes_Load;
             ((System.ComponentModel.ISupportInitialize)numPlazoLimite).EndInit();
+            grpDescripciones.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)gdvDescripciones).EndInit();
+            panelBtnsDesc.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -311,5 +400,12 @@ namespace Control
         private Label label18;
         private Label label13;
         private NumericUpDown numPlazoLimite;
+        private GroupBox grpDescripciones;
+        private DataGridView gdvDescripciones;
+        private DataGridViewTextBoxColumn colCodigoDesc;
+        private DataGridViewTextBoxColumn colDescripcion;
+        private Panel panelBtnsDesc;
+        private Button btnImportDescripciones;
+        private Button btnExportDescripciones;
     }
 }

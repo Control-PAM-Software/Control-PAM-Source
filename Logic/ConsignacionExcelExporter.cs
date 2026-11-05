@@ -10,7 +10,7 @@ namespace Control.Logic
     {
         private static readonly string[] Encabezados = new[]
         {
-            "Serie", "Código", "Depósito Actual", "Fecha Salida",
+            "Serie", "Código", "Descripción", "Depósito Actual", "Fecha Salida",
             "Días Transcurridos", "Entregado", "Estado"
         };
 
@@ -72,14 +72,15 @@ namespace Control.Logic
                 {
                     ws.Cell(r, 1).Value = item.Serial;
                     ws.Cell(r, 2).Value = item.Code;
-                    ws.Cell(r, 3).Value = item.CurrentDepot;
-                    ws.Cell(r, 4).Value = item.DepartureDate;
-                    ws.Cell(r, 5).Value = item.DaysElapsed;
-                    ws.Cell(r, 6).Value = item.Delivered ? "Sí" : "No";
-                    ws.Cell(r, 7).Value = ConsignacionesLogic.EstadoTexto(item.State);
+                    ws.Cell(r, 3).Value = item.Description;
+                    ws.Cell(r, 4).Value = item.CurrentDepot;
+                    ws.Cell(r, 5).Value = item.DepartureDate;
+                    ws.Cell(r, 6).Value = item.DaysElapsed;
+                    ws.Cell(r, 7).Value = item.Delivered ? "Sí" : "No";
+                    ws.Cell(r, 8).Value = ConsignacionesLogic.EstadoTexto(item.State);
 
+                    ws.Cell(r, 7).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
                     ws.Cell(r, 6).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
-                    ws.Cell(r, 5).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
 
                     string hex = HexEstado(item);
                     ws.Range(r, 1, r, Encabezados.Length).Style.Fill.BackgroundColor = XLColor.FromHtml(hex);
@@ -100,10 +101,11 @@ namespace Control.Logic
                 // Anchos razonables (AdjustToContents primero y luego mínimo por columna)
                 ws.Columns().AdjustToContents();
                 ws.Column(1).Width = 14;
-                ws.Column(3).Width = 16;
-                ws.Column(4).Width = 15;
-                ws.Column(5).Width = 18;
-                ws.Column(7).Width = 24;
+                ws.Column(3).Width = 40;
+                ws.Column(4).Width = 16;
+                ws.Column(5).Width = 15;
+                ws.Column(6).Width = 18;
+                ws.Column(8).Width = 24;
 
                 workbook.SaveAs(rutaDestino);
             }

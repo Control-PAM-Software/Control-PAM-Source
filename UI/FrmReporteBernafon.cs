@@ -57,6 +57,8 @@ namespace Control
             cmbEstado.SelectedIndexChanged += Filtro_Changed;
             cmbDeposito.SelectedIndexChanged += Filtro_Changed;
             txtBuscar.TextChanged += Filtro_Changed;
+            dataGridView1.CellDoubleClick += DataGridView1_CellDoubleClick;
+            dataGridView1.CellBeginEdit += DataGridView1_CellBeginEdit;
         }
 
         private void Filtro_Changed(object? sender, EventArgs e)
@@ -203,6 +205,10 @@ namespace Control
 
                 dataGridView1.Rows[rowIndex].Cells["colSerial"].Value = item.Serial;
                 dataGridView1.Rows[rowIndex].Cells["colCode"].Value = item.Code;
+                if (dataGridView1.Columns.Contains("colDescripcion"))
+                {
+                    dataGridView1.Rows[rowIndex].Cells["colDescripcion"].Value = item.Description;
+                }
                 dataGridView1.Rows[rowIndex].Cells["colDepot"].Value = item.CurrentDepot;
                 dataGridView1.Rows[rowIndex].Cells["colFecha"].Value = item.DepartureDate;
                 dataGridView1.Rows[rowIndex].Cells["colDias"].Value = item.DaysElapsed;
@@ -602,6 +608,37 @@ namespace Control
         private void dataGridView1_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
             Functions.EnumerarFilasDataGrid(sender, e);
+        }
+
+        private void DataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            e.Cancel = true;
+        }
+
+        private void DataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0)
+            {
+                return;
+            }
+
+            var valor = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+            if (valor == null)
+            {
+                return;
+            }
+
+            string texto = valor.ToString();
+            if (!string.IsNullOrWhiteSpace(texto))
+            {
+                try
+                {
+                    Clipboard.SetText(texto);
+                }
+                catch
+                {
+                }
+            }
         }
     }
 }
