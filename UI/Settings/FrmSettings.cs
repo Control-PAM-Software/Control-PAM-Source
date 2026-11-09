@@ -454,6 +454,8 @@ namespace Control
 
                 AppSettings.settings.ConsignacionReporte.PlazoLimite = frm.plazoLimite;
 
+                frm.GuardarCambios();
+
                 saveSettings();
             }
         }

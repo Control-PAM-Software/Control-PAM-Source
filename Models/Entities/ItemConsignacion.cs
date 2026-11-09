@@ -4,6 +4,7 @@ namespace Control.Models.Entities
     {
         public string Serial { get; set; } = "";
         public string Code { get; set; } = "";
+        public string Description { get; set; } = "";
         public string CurrentDepot { get; set; } = "";
         public string DepartureDate { get; set; } = "";
         public int DaysElapsed { get; set; } = 0;

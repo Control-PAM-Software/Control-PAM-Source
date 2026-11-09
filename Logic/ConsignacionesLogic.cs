@@ -512,6 +512,7 @@ namespace Control.Logic
                 {
                     Serial = serial,
                     Code = codePorSerie[serial],
+                    Description = ArticuloDescripcionCatalogo.ObtenerDescripcion(codePorSerie[serial]),
                     CurrentDepot = kv.Value,
                     SerieSinMovimiento = !tieneMovimiento
                 };
@@ -546,6 +547,7 @@ namespace Control.Logic
                 {
                     Serial = kv.Key,
                     Code = kv.Value.Code,
+                    Description = ArticuloDescripcionCatalogo.ObtenerDescripcion(kv.Value.Code),
                     Delivered = true,
                     State = ConsignacionEstado.Entregado
                 };

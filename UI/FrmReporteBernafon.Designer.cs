@@ -31,17 +31,28 @@ namespace Control
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmReporteBernafon));
-            toolTip1 = new ToolTip();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            toolTip1 = new ToolTip(components);
+            BtnLimpiar = new Button();
+            BtnPdf = new Button();
+            BtnExcel = new Button();
             dataGridView1 = new DataGridView();
             colSerial = new DataGridViewTextBoxColumn();
             colCode = new DataGridViewTextBoxColumn();
+            colDescripcion = new DataGridViewTextBoxColumn();
             colDepot = new DataGridViewTextBoxColumn();
             colFecha = new DataGridViewTextBoxColumn();
             colDias = new DataGridViewTextBoxColumn();
             colEntregado = new DataGridViewTextBoxColumn();
             colEstado = new DataGridViewTextBoxColumn();
             pnlLoad = new Panel();
+            BtnGenerar = new Button();
             lblImport = new Label();
             labelStock = new Label();
             txtStockPath = new TextBox();
@@ -49,43 +60,36 @@ namespace Control
             labelMov = new Label();
             txtMovPath = new TextBox();
             btnExaminarMov = new Button();
-            BtnGenerar = new Button();
-            BtnExcel = new Button();
-            BtnPdf = new Button();
-            BtnLimpiar = new Button();
             panel10 = new Panel();
             lblMeta = new Label();
             labelTitle = new Label();
             panel8 = new Panel();
             panel9 = new Panel();
             label5 = new Label();
-            dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            dataGridViewCellStyle3 = new DataGridViewCellStyle();
             pnlCards = new Panel();
             tlpCards = new TableLayoutPanel();
             pnlCardEnStock = new Panel();
-            barAccentEnStock = new Panel();
-            lblTituloEnStock = new Label();
-            lblDetalleEnStock = new Label();
             lblValorEnStock = new Label();
+            lblDetalleEnStock = new Label();
+            lblTituloEnStock = new Label();
+            barAccentEnStock = new Panel();
             pnlCardVencidos = new Panel();
-            barAccentVencidos = new Panel();
-            lblTituloVencidos = new Label();
-            lblDetalleVencidos = new Label();
             lblValorVencidos = new Label();
+            lblDetalleVencidos = new Label();
+            lblTituloVencidos = new Label();
+            barAccentVencidos = new Panel();
             pnlCardEntregados = new Panel();
-            barAccentEntregados = new Panel();
-            lblTituloEntregados = new Label();
-            lblDetalleEntregados = new Label();
             lblValorEntregados = new Label();
+            lblDetalleEntregados = new Label();
+            lblTituloEntregados = new Label();
+            barAccentEntregados = new Panel();
             pnlFilters = new Panel();
-            labelFiltroDeposito = new Label();
-            cmbDeposito = new ComboBox();
-            labelFiltroEstado = new Label();
-            cmbEstado = new ComboBox();
-            labelFiltroBuscar = new Label();
             txtBuscar = new TextBox();
+            labelFiltroBuscar = new Label();
+            cmbEstado = new ComboBox();
+            labelFiltroEstado = new Label();
+            cmbDeposito = new ComboBox();
+            labelFiltroDeposito = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             pnlLoad.SuspendLayout();
             panel10.SuspendLayout();
@@ -98,282 +102,6 @@ namespace Control
             pnlCardEntregados.SuspendLayout();
             pnlFilters.SuspendLayout();
             SuspendLayout();
-            // 
-            // dataGridView1
-            // 
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.AllowUserToResizeRows = false;
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView1.BackgroundColor = Color.White;
-            dataGridView1.BorderStyle = BorderStyle.None;
-            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridView1.ColumnHeadersHeight = 40;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { colSerial, colCode, colDepot, colFecha, colDias, colEntregado, colEstado });
-            dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
-            dataGridView1.Dock = DockStyle.Fill;
-            dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.GridColor = Color.FromArgb(239, 241, 243);
-            dataGridView1.Location = new Point(220, 240);
-            dataGridView1.MultiSelect = false;
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.ReadOnly = true;
-            dataGridView1.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            dataGridView1.RowHeadersWidth = 45;
-            dataGridView1.RowTemplate.Height = 35;
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(1060, 520);
-            dataGridView1.TabIndex = 27;
-            dataGridView1.RowPostPaint += dataGridView1_RowPostPaint;
-            // 
-            // colSerial
-            // 
-            colSerial.HeaderText = "Serie";
-            colSerial.MinimumWidth = 90;
-            colSerial.Name = "colSerial";
-            colSerial.ReadOnly = true;
-            // 
-            // colCode
-            // 
-            colCode.HeaderText = "Código";
-            colCode.MinimumWidth = 70;
-            colCode.Name = "colCode";
-            colCode.ReadOnly = true;
-            // 
-            // colDepot
-            // 
-            colDepot.HeaderText = "Depósito Actual";
-            colDepot.MinimumWidth = 80;
-            colDepot.Name = "colDepot";
-            colDepot.ReadOnly = true;
-            // 
-            // colFecha
-            // 
-            colFecha.HeaderText = "Fecha Salida";
-            colFecha.MinimumWidth = 80;
-            colFecha.Name = "colFecha";
-            colFecha.ReadOnly = true;
-            // 
-            // colDias
-            // 
-            colDias.HeaderText = "Días Transcurridos";
-            colDias.MinimumWidth = 70;
-            colDias.Name = "colDias";
-            colDias.ReadOnly = true;
-            // 
-            // colEntregado
-            // 
-            colEntregado.HeaderText = "Entregado";
-            colEntregado.MinimumWidth = 60;
-            colEntregado.Name = "colEntregado";
-            colEntregado.ReadOnly = true;
-            // 
-            // colEstado
-            // 
-            colEstado.HeaderText = "Estado";
-            colEstado.MinimumWidth = 100;
-            colEstado.Name = "colEstado";
-            colEstado.ReadOnly = true;
-            // 
-            // dataGridViewCellStyle1
-            // 
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(45, 45, 48);
-            dataGridViewCellStyle1.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = Color.White;
-            dataGridViewCellStyle1.Padding = new Padding(4, 0, 0, 0);
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(45, 45, 48);
-            dataGridViewCellStyle1.SelectionForeColor = Color.White;
-            // 
-            // dataGridViewCellStyle2
-            // 
-            dataGridViewCellStyle2.BackColor = Color.White;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9.5F);
-            dataGridViewCellStyle2.ForeColor = Color.FromArgb(64, 64, 64);
-            dataGridViewCellStyle2.Padding = new Padding(4, 0, 0, 0);
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(229, 235, 244);
-            dataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(31, 31, 38);
-            // 
-            // dataGridViewCellStyle3
-            // 
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(245, 247, 251);
-            dataGridViewCellStyle3.ForeColor = Color.FromArgb(80, 80, 80);
-            // 
-            // pnlLoad
-            // 
-            pnlLoad.BackColor = Color.White;
-            pnlLoad.Controls.Add(BtnGenerar);
-            pnlLoad.Controls.Add(lblImport);
-            pnlLoad.Controls.Add(labelStock);
-            pnlLoad.Controls.Add(txtStockPath);
-            pnlLoad.Controls.Add(btnExaminarStock);
-            pnlLoad.Controls.Add(labelMov);
-            pnlLoad.Controls.Add(txtMovPath);
-            pnlLoad.Controls.Add(btnExaminarMov);
-            pnlLoad.Dock = DockStyle.Top;
-            pnlLoad.Location = new Point(220, 80);
-            pnlLoad.Name = "pnlLoad";
-            pnlLoad.Size = new Size(1060, 142);
-            pnlLoad.TabIndex = 1;
-            // 
-            // lblImport
-            // 
-            lblImport.AutoSize = true;
-            lblImport.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
-            lblImport.ForeColor = Color.FromArgb(107, 107, 118);
-            lblImport.Location = new Point(24, 15);
-            lblImport.Name = "lblImport";
-            lblImport.Size = new Size(246, 19);
-            lblImport.TabIndex = 2;
-            lblImport.Text = "IMPORTACIÓN DE ARCHIVOS EXCEL";
-            // 
-            // labelStock
-            // 
-            labelStock.AutoSize = true;
-            labelStock.Font = new Font("Segoe UI Semibold", 9F);
-            labelStock.Location = new Point(24, 73);
-            labelStock.Name = "labelStock";
-            labelStock.Size = new Size(200, 22);
-            labelStock.TabIndex = 3;
-            labelStock.Text = "Listado de Stock";
-            labelStock.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // txtStockPath
-            // 
-            txtStockPath.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            txtStockPath.BackColor = Color.FromArgb(250, 251, 253);
-            txtStockPath.BorderStyle = BorderStyle.FixedSingle;
-            txtStockPath.Font = new Font("Segoe UI", 9.5F);
-            txtStockPath.ForeColor = Color.FromArgb(107, 107, 118);
-            txtStockPath.Location = new Point(230, 71);
-            txtStockPath.Name = "txtStockPath";
-            txtStockPath.ReadOnly = true;
-            txtStockPath.Size = new Size(708, 24);
-            txtStockPath.TabIndex = 4;
-            // 
-            // btnExaminarStock
-            // 
-            btnExaminarStock.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnExaminarStock.BackColor = Color.FromArgb(240, 243, 248);
-            btnExaminarStock.FlatAppearance.BorderColor = Color.FromArgb(207, 214, 224);
-            btnExaminarStock.FlatStyle = FlatStyle.Flat;
-            btnExaminarStock.Font = new Font("Segoe UI Semibold", 9F);
-            btnExaminarStock.ForeColor = Color.FromArgb(45, 45, 48);
-            btnExaminarStock.Location = new Point(948, 71);
-            btnExaminarStock.Name = "btnExaminarStock";
-            btnExaminarStock.Size = new Size(90, 24);
-            btnExaminarStock.TabIndex = 5;
-            btnExaminarStock.Text = "Examinar…";
-            btnExaminarStock.UseVisualStyleBackColor = true;
-            btnExaminarStock.Click += btnExaminarStock_Click;
-            // 
-            // labelMov
-            // 
-            labelMov.AutoSize = true;
-            labelMov.Font = new Font("Segoe UI Semibold", 9F);
-            labelMov.Location = new Point(24, 43);
-            labelMov.Name = "labelMov";
-            labelMov.Size = new Size(200, 22);
-            labelMov.TabIndex = 6;
-            labelMov.Text = "Listado de Movimientos de Stock";
-            labelMov.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // txtMovPath
-            // 
-            txtMovPath.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            txtMovPath.BackColor = Color.FromArgb(250, 251, 253);
-            txtMovPath.BorderStyle = BorderStyle.FixedSingle;
-            txtMovPath.Font = new Font("Segoe UI", 9.5F);
-            txtMovPath.ForeColor = Color.FromArgb(107, 107, 118);
-            txtMovPath.Location = new Point(230, 43);
-            txtMovPath.Name = "txtMovPath";
-            txtMovPath.ReadOnly = true;
-            txtMovPath.Size = new Size(708, 24);
-            txtMovPath.TabIndex = 7;
-            // 
-            // btnExaminarMov
-            // 
-            btnExaminarMov.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnExaminarMov.BackColor = Color.FromArgb(240, 243, 248);
-            btnExaminarMov.FlatAppearance.BorderColor = Color.FromArgb(207, 214, 224);
-            btnExaminarMov.FlatStyle = FlatStyle.Flat;
-            btnExaminarMov.Font = new Font("Segoe UI Semibold", 9F);
-            btnExaminarMov.ForeColor = Color.FromArgb(45, 45, 48);
-            btnExaminarMov.Location = new Point(948, 43);
-            btnExaminarMov.Name = "btnExaminarMov";
-            btnExaminarMov.Size = new Size(90, 24);
-            btnExaminarMov.TabIndex = 8;
-            btnExaminarMov.Text = "Examinar…";
-            btnExaminarMov.UseVisualStyleBackColor = true;
-            btnExaminarMov.Click += btnExaminarMov_Click;
-            // 
-            // BtnGenerar
-            // 
-            BtnGenerar.Anchor = AnchorStyles.Top | AnchorStyles.Left;
-            BtnGenerar.BackColor = Color.FromArgb(74, 125, 255);
-            BtnGenerar.FlatAppearance.BorderColor = Color.FromArgb(74, 125, 255);
-            BtnGenerar.FlatAppearance.BorderSize = 0;
-            BtnGenerar.FlatAppearance.MouseDownBackColor = Color.FromArgb(58, 108, 235);
-            BtnGenerar.FlatAppearance.MouseOverBackColor = Color.FromArgb(58, 108, 235);
-            BtnGenerar.FlatStyle = FlatStyle.Flat;
-            BtnGenerar.Font = new Font("Segoe UI Semibold", 10F);
-            BtnGenerar.ForeColor = Color.White;
-            BtnGenerar.Location = new Point(24, 101);
-            BtnGenerar.Name = "BtnGenerar";
-            BtnGenerar.Size = new Size(170, 34);
-            BtnGenerar.TabIndex = 9;
-            BtnGenerar.Text = "Generar Reporte";
-            BtnGenerar.UseVisualStyleBackColor = false;
-            BtnGenerar.Click += BtnGenerar_Click;
-            // 
-            // panel10
-            // 
-            panel10.BackColor = Color.FromArgb(39, 39, 58);
-            panel10.Controls.Add(lblMeta);
-            panel10.Controls.Add(labelTitle);
-            panel10.Dock = DockStyle.Top;
-            panel10.Location = new Point(220, 0);
-            panel10.Name = "panel10";
-            panel10.Size = new Size(1060, 80);
-            panel10.TabIndex = 1;
-            // 
-            // lblMeta
-            // 
-            lblMeta.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            lblMeta.Font = new Font("Segoe UI", 9F);
-            lblMeta.ForeColor = Color.FromArgb(168, 168, 184);
-            lblMeta.Location = new Point(760, 12);
-            lblMeta.Name = "lblMeta";
-            lblMeta.Size = new Size(280, 54);
-            lblMeta.TabIndex = 1;
-            lblMeta.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // labelTitle
-            // 
-            labelTitle.AutoSize = true;
-            labelTitle.Font = new Font("Segoe UI Light", 20F);
-            labelTitle.ForeColor = Color.White;
-            labelTitle.Location = new Point(30, 20);
-            labelTitle.Name = "labelTitle";
-            labelTitle.Size = new Size(385, 37);
-            labelTitle.TabIndex = 0;
-            labelTitle.Text = "Control de Consignaciones — Bernafon";
-            // 
-            // panel8
-            // 
-            panel8.BackColor = Color.FromArgb(51, 51, 76);
-            panel8.Controls.Add(BtnLimpiar);
-            panel8.Controls.Add(BtnPdf);
-            panel8.Controls.Add(BtnExcel);
-            panel8.Controls.Add(panel9);
-            panel8.Dock = DockStyle.Left;
-            panel8.Location = new Point(0, 0);
-            panel8.Name = "panel8";
-            panel8.Size = new Size(220, 760);
-            panel8.TabIndex = 0;
             // 
             // BtnLimpiar
             // 
@@ -447,6 +175,288 @@ namespace Control
             BtnExcel.UseVisualStyleBackColor = false;
             BtnExcel.Click += BtnExcel_Click;
             // 
+            // dataGridView1
+            // 
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.AllowUserToResizeRows = false;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.BackgroundColor = Color.White;
+            dataGridView1.BorderStyle = BorderStyle.None;
+            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView1.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
+            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(45, 45, 48);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.Padding = new Padding(4, 0, 0, 0);
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(45, 45, 48);
+            dataGridViewCellStyle1.SelectionForeColor = Color.White;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridView1.ColumnHeadersHeight = 40;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { colSerial, colCode, colDescripcion, colDepot, colFecha, colDias, colEntregado, colEstado });
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.White;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9.5F);
+            dataGridViewCellStyle4.ForeColor = Color.FromArgb(64, 64, 64);
+            dataGridViewCellStyle4.Padding = new Padding(4, 0, 0, 0);
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(229, 235, 244);
+            dataGridViewCellStyle4.SelectionForeColor = Color.FromArgb(31, 31, 38);
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            dataGridView1.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridView1.Dock = DockStyle.Fill;
+            dataGridView1.EnableHeadersVisualStyles = false;
+            dataGridView1.GridColor = Color.FromArgb(239, 241, 243);
+            dataGridView1.Location = new Point(220, 390);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
+            dataGridView1.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle5.BackColor = Color.FromArgb(245, 247, 251);
+            dataGridViewCellStyle5.ForeColor = Color.FromArgb(80, 80, 80);
+            dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridView1.RowHeadersWidth = 45;
+            dataGridView1.RowTemplate.Height = 35;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.Size = new Size(1060, 370);
+            dataGridView1.TabIndex = 27;
+            dataGridView1.RowPostPaint += dataGridView1_RowPostPaint;
+            // 
+            // colSerial
+            // 
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(229, 235, 244);
+            dataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(31, 31, 38);
+            colSerial.DefaultCellStyle = dataGridViewCellStyle2;
+            colSerial.HeaderText = "Serie";
+            colSerial.MinimumWidth = 90;
+            colSerial.Name = "colSerial";
+            colSerial.ReadOnly = true;
+            // 
+            // colCode
+            // 
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(229, 235, 244);
+            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(31, 31, 38);
+            colCode.DefaultCellStyle = dataGridViewCellStyle3;
+            colCode.HeaderText = "Código";
+            colCode.MinimumWidth = 70;
+            colCode.Name = "colCode";
+            colCode.ReadOnly = true;
+            // 
+            // colDescripcion
+            // 
+            colDescripcion.FillWeight = 160F;
+            colDescripcion.HeaderText = "Descripción";
+            colDescripcion.MinimumWidth = 200;
+            colDescripcion.Name = "colDescripcion";
+            colDescripcion.ReadOnly = true;
+            // 
+            // colDepot
+            // 
+            colDepot.HeaderText = "Depósito Actual";
+            colDepot.MinimumWidth = 80;
+            colDepot.Name = "colDepot";
+            colDepot.ReadOnly = true;
+            // 
+            // colFecha
+            // 
+            colFecha.HeaderText = "Fecha Salida";
+            colFecha.MinimumWidth = 80;
+            colFecha.Name = "colFecha";
+            colFecha.ReadOnly = true;
+            // 
+            // colDias
+            // 
+            colDias.HeaderText = "Días Transcurridos";
+            colDias.MinimumWidth = 70;
+            colDias.Name = "colDias";
+            colDias.ReadOnly = true;
+            // 
+            // colEntregado
+            // 
+            colEntregado.HeaderText = "Entregado";
+            colEntregado.MinimumWidth = 60;
+            colEntregado.Name = "colEntregado";
+            colEntregado.ReadOnly = true;
+            // 
+            // colEstado
+            // 
+            colEstado.HeaderText = "Estado";
+            colEstado.MinimumWidth = 100;
+            colEstado.Name = "colEstado";
+            colEstado.ReadOnly = true;
+            // 
+            // pnlLoad
+            // 
+            pnlLoad.BackColor = Color.White;
+            pnlLoad.Controls.Add(BtnGenerar);
+            pnlLoad.Controls.Add(lblImport);
+            pnlLoad.Controls.Add(labelStock);
+            pnlLoad.Controls.Add(txtStockPath);
+            pnlLoad.Controls.Add(btnExaminarStock);
+            pnlLoad.Controls.Add(labelMov);
+            pnlLoad.Controls.Add(txtMovPath);
+            pnlLoad.Controls.Add(btnExaminarMov);
+            pnlLoad.Dock = DockStyle.Top;
+            pnlLoad.Location = new Point(220, 80);
+            pnlLoad.Name = "pnlLoad";
+            pnlLoad.Size = new Size(1060, 142);
+            pnlLoad.TabIndex = 1;
+            // 
+            // BtnGenerar
+            // 
+            BtnGenerar.BackColor = Color.FromArgb(74, 125, 255);
+            BtnGenerar.FlatAppearance.BorderColor = Color.FromArgb(74, 125, 255);
+            BtnGenerar.FlatAppearance.BorderSize = 0;
+            BtnGenerar.FlatAppearance.MouseDownBackColor = Color.FromArgb(58, 108, 235);
+            BtnGenerar.FlatAppearance.MouseOverBackColor = Color.FromArgb(58, 108, 235);
+            BtnGenerar.FlatStyle = FlatStyle.Flat;
+            BtnGenerar.Font = new Font("Segoe UI Semibold", 10F);
+            BtnGenerar.ForeColor = Color.White;
+            BtnGenerar.Location = new Point(24, 101);
+            BtnGenerar.Name = "BtnGenerar";
+            BtnGenerar.Size = new Size(170, 34);
+            BtnGenerar.TabIndex = 9;
+            BtnGenerar.Text = "Generar Reporte";
+            BtnGenerar.UseVisualStyleBackColor = false;
+            BtnGenerar.Click += BtnGenerar_Click;
+            // 
+            // lblImport
+            // 
+            lblImport.AutoSize = true;
+            lblImport.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+            lblImport.ForeColor = Color.FromArgb(107, 107, 118);
+            lblImport.Location = new Point(24, 15);
+            lblImport.Name = "lblImport";
+            lblImport.Size = new Size(242, 19);
+            lblImport.TabIndex = 2;
+            lblImport.Text = "IMPORTACIÓN DE ARCHIVOS EXCEL";
+            // 
+            // labelStock
+            // 
+            labelStock.AutoSize = true;
+            labelStock.Font = new Font("Segoe UI Semibold", 9F);
+            labelStock.Location = new Point(24, 73);
+            labelStock.Name = "labelStock";
+            labelStock.Size = new Size(94, 15);
+            labelStock.TabIndex = 3;
+            labelStock.Text = "Listado de Stock";
+            labelStock.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // txtStockPath
+            // 
+            txtStockPath.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtStockPath.BackColor = Color.FromArgb(250, 251, 253);
+            txtStockPath.BorderStyle = BorderStyle.FixedSingle;
+            txtStockPath.Font = new Font("Segoe UI", 9.5F);
+            txtStockPath.ForeColor = Color.FromArgb(107, 107, 118);
+            txtStockPath.Location = new Point(230, 71);
+            txtStockPath.Name = "txtStockPath";
+            txtStockPath.ReadOnly = true;
+            txtStockPath.Size = new Size(708, 24);
+            txtStockPath.TabIndex = 4;
+            // 
+            // btnExaminarStock
+            // 
+            btnExaminarStock.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnExaminarStock.BackColor = Color.FromArgb(240, 243, 248);
+            btnExaminarStock.FlatAppearance.BorderColor = Color.FromArgb(207, 214, 224);
+            btnExaminarStock.FlatStyle = FlatStyle.Flat;
+            btnExaminarStock.Font = new Font("Segoe UI Semibold", 9F);
+            btnExaminarStock.ForeColor = Color.FromArgb(45, 45, 48);
+            btnExaminarStock.Location = new Point(948, 71);
+            btnExaminarStock.Name = "btnExaminarStock";
+            btnExaminarStock.Size = new Size(90, 24);
+            btnExaminarStock.TabIndex = 5;
+            btnExaminarStock.Text = "Examinar…";
+            btnExaminarStock.UseVisualStyleBackColor = true;
+            btnExaminarStock.Click += btnExaminarStock_Click;
+            // 
+            // labelMov
+            // 
+            labelMov.AutoSize = true;
+            labelMov.Font = new Font("Segoe UI Semibold", 9F);
+            labelMov.Location = new Point(24, 43);
+            labelMov.Name = "labelMov";
+            labelMov.Size = new Size(183, 15);
+            labelMov.TabIndex = 6;
+            labelMov.Text = "Listado de Movimientos de Stock";
+            labelMov.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // txtMovPath
+            // 
+            txtMovPath.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtMovPath.BackColor = Color.FromArgb(250, 251, 253);
+            txtMovPath.BorderStyle = BorderStyle.FixedSingle;
+            txtMovPath.Font = new Font("Segoe UI", 9.5F);
+            txtMovPath.ForeColor = Color.FromArgb(107, 107, 118);
+            txtMovPath.Location = new Point(230, 43);
+            txtMovPath.Name = "txtMovPath";
+            txtMovPath.ReadOnly = true;
+            txtMovPath.Size = new Size(708, 24);
+            txtMovPath.TabIndex = 7;
+            // 
+            // btnExaminarMov
+            // 
+            btnExaminarMov.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnExaminarMov.BackColor = Color.FromArgb(240, 243, 248);
+            btnExaminarMov.FlatAppearance.BorderColor = Color.FromArgb(207, 214, 224);
+            btnExaminarMov.FlatStyle = FlatStyle.Flat;
+            btnExaminarMov.Font = new Font("Segoe UI Semibold", 9F);
+            btnExaminarMov.ForeColor = Color.FromArgb(45, 45, 48);
+            btnExaminarMov.Location = new Point(948, 43);
+            btnExaminarMov.Name = "btnExaminarMov";
+            btnExaminarMov.Size = new Size(90, 24);
+            btnExaminarMov.TabIndex = 8;
+            btnExaminarMov.Text = "Examinar…";
+            btnExaminarMov.UseVisualStyleBackColor = true;
+            btnExaminarMov.Click += btnExaminarMov_Click;
+            // 
+            // panel10
+            // 
+            panel10.BackColor = Color.FromArgb(39, 39, 58);
+            panel10.Controls.Add(lblMeta);
+            panel10.Controls.Add(labelTitle);
+            panel10.Dock = DockStyle.Top;
+            panel10.Location = new Point(220, 0);
+            panel10.Name = "panel10";
+            panel10.Size = new Size(1060, 80);
+            panel10.TabIndex = 1;
+            // 
+            // lblMeta
+            // 
+            lblMeta.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            lblMeta.Font = new Font("Segoe UI", 9F);
+            lblMeta.ForeColor = Color.FromArgb(168, 168, 184);
+            lblMeta.Location = new Point(760, 12);
+            lblMeta.Name = "lblMeta";
+            lblMeta.Size = new Size(280, 54);
+            lblMeta.TabIndex = 1;
+            lblMeta.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // labelTitle
+            // 
+            labelTitle.AutoSize = true;
+            labelTitle.Font = new Font("Segoe UI Light", 20F);
+            labelTitle.ForeColor = Color.White;
+            labelTitle.Location = new Point(30, 20);
+            labelTitle.Name = "labelTitle";
+            labelTitle.Size = new Size(460, 37);
+            labelTitle.TabIndex = 0;
+            labelTitle.Text = "Control de Consignaciones — Bernafon";
+            // 
+            // panel8
+            // 
+            panel8.BackColor = Color.FromArgb(51, 51, 76);
+            panel8.Controls.Add(BtnLimpiar);
+            panel8.Controls.Add(BtnPdf);
+            panel8.Controls.Add(BtnExcel);
+            panel8.Controls.Add(panel9);
+            panel8.Dock = DockStyle.Left;
+            panel8.Location = new Point(0, 0);
+            panel8.Name = "panel8";
+            panel8.Size = new Size(220, 760);
+            panel8.TabIndex = 0;
+            // 
             // panel9
             // 
             panel9.BackColor = Color.FromArgb(39, 39, 58);
@@ -468,84 +478,6 @@ namespace Control
             label5.TabIndex = 0;
             label5.Text = "Reporte Bernafon\r\nConsignaciones";
             label5.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // pnlFilters
-            // 
-            pnlFilters.BackColor = Color.White;
-            pnlFilters.Controls.Add(txtBuscar);
-            pnlFilters.Controls.Add(labelFiltroBuscar);
-            pnlFilters.Controls.Add(cmbEstado);
-            pnlFilters.Controls.Add(labelFiltroEstado);
-            pnlFilters.Controls.Add(cmbDeposito);
-            pnlFilters.Controls.Add(labelFiltroDeposito);
-            pnlFilters.Dock = DockStyle.Top;
-            pnlFilters.Location = new Point(220, 342);
-            pnlFilters.Name = "pnlFilters";
-            pnlFilters.Padding = new Padding(0);
-            pnlFilters.Size = new Size(1060, 50);
-            pnlFilters.TabIndex = 3;
-            // 
-            // labelFiltroDeposito
-            // 
-            labelFiltroDeposito.AutoSize = true;
-            labelFiltroDeposito.Font = new Font("Segoe UI", 9F);
-            labelFiltroDeposito.ForeColor = Color.FromArgb(90, 90, 108);
-            labelFiltroDeposito.Location = new Point(30, 17);
-            labelFiltroDeposito.Name = "labelFiltroDeposito";
-            labelFiltroDeposito.Size = new Size(47, 15);
-            labelFiltroDeposito.TabIndex = 0;
-            labelFiltroDeposito.Text = "Depósito:";
-            // 
-            // cmbDeposito
-            // 
-            cmbDeposito.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbDeposito.Font = new Font("Segoe UI", 9F);
-            cmbDeposito.FormattingEnabled = true;
-            cmbDeposito.Location = new Point(102, 13);
-            cmbDeposito.Name = "cmbDeposito";
-            cmbDeposito.Size = new Size(160, 23);
-            cmbDeposito.TabIndex = 1;
-            // 
-            // labelFiltroEstado
-            // 
-            labelFiltroEstado.AutoSize = true;
-            labelFiltroEstado.Font = new Font("Segoe UI", 9F);
-            labelFiltroEstado.ForeColor = Color.FromArgb(90, 90, 108);
-            labelFiltroEstado.Location = new Point(290, 17);
-            labelFiltroEstado.Name = "labelFiltroEstado";
-            labelFiltroEstado.Size = new Size(41, 15);
-            labelFiltroEstado.TabIndex = 2;
-            labelFiltroEstado.Text = "Estado:";
-            // 
-            // cmbEstado
-            // 
-            cmbEstado.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbEstado.Font = new Font("Segoe UI", 9F);
-            cmbEstado.FormattingEnabled = true;
-            cmbEstado.Location = new Point(356, 13);
-            cmbEstado.Name = "cmbEstado";
-            cmbEstado.Size = new Size(190, 23);
-            cmbEstado.TabIndex = 3;
-            // 
-            // labelFiltroBuscar
-            // 
-            labelFiltroBuscar.AutoSize = true;
-            labelFiltroBuscar.Font = new Font("Segoe UI", 9F);
-            labelFiltroBuscar.ForeColor = Color.FromArgb(90, 90, 108);
-            labelFiltroBuscar.Location = new Point(574, 17);
-            labelFiltroBuscar.Name = "labelFiltroBuscar";
-            labelFiltroBuscar.Size = new Size(43, 15);
-            labelFiltroBuscar.TabIndex = 4;
-            labelFiltroBuscar.Text = "Buscar:";
-            // 
-            // txtBuscar
-            // 
-            txtBuscar.Font = new Font("Segoe UI", 9F);
-            txtBuscar.Location = new Point(642, 13);
-            txtBuscar.Name = "txtBuscar";
-            txtBuscar.PlaceholderText = "Serie o código...";
-            txtBuscar.Size = new Size(300, 23);
-            txtBuscar.TabIndex = 5;
             // 
             // pnlCards
             // 
@@ -585,48 +517,12 @@ namespace Control
             pnlCardEnStock.Controls.Add(barAccentEnStock);
             pnlCardEnStock.Cursor = Cursors.Hand;
             pnlCardEnStock.Dock = DockStyle.Fill;
-            pnlCardEnStock.Location = new Point(20, 14);
+            pnlCardEnStock.Location = new Point(20, 12);
             pnlCardEnStock.Margin = new Padding(20, 0, 20, 0);
             pnlCardEnStock.Name = "pnlCardEnStock";
             pnlCardEnStock.Padding = new Padding(20, 0, 12, 0);
             pnlCardEnStock.Size = new Size(313, 94);
             pnlCardEnStock.TabIndex = 0;
-            // 
-            // barAccentEnStock
-            // 
-            barAccentEnStock.BackColor = Color.FromArgb(74, 125, 255);
-            barAccentEnStock.Dock = DockStyle.Left;
-            barAccentEnStock.Location = new Point(0, 0);
-            barAccentEnStock.Margin = new Padding(0);
-            barAccentEnStock.Name = "barAccentEnStock";
-            barAccentEnStock.Size = new Size(5, 94);
-            barAccentEnStock.TabIndex = 4;
-            // 
-            // lblTituloEnStock
-            // 
-            lblTituloEnStock.Dock = DockStyle.Top;
-            lblTituloEnStock.Font = new Font("Segoe UI Semibold", 8.5F);
-            lblTituloEnStock.ForeColor = Color.FromArgb(90, 90, 108);
-            lblTituloEnStock.Location = new Point(25, 0);
-            lblTituloEnStock.Name = "lblTituloEnStock";
-            lblTituloEnStock.Padding = new Padding(0);
-            lblTituloEnStock.Size = new Size(276, 24);
-            lblTituloEnStock.TabIndex = 3;
-            lblTituloEnStock.Text = "EN STOCK";
-            lblTituloEnStock.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // lblDetalleEnStock
-            // 
-            lblDetalleEnStock.Dock = DockStyle.Bottom;
-            lblDetalleEnStock.Font = new Font("Segoe UI", 8F);
-            lblDetalleEnStock.ForeColor = Color.FromArgb(130, 130, 150);
-            lblDetalleEnStock.Location = new Point(25, 52);
-            lblDetalleEnStock.Name = "lblDetalleEnStock";
-            lblDetalleEnStock.Padding = new Padding(0);
-            lblDetalleEnStock.Size = new Size(276, 20);
-            lblDetalleEnStock.TabIndex = 2;
-            lblDetalleEnStock.Text = "-";
-            lblDetalleEnStock.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // lblValorEnStock
             // 
@@ -640,6 +536,40 @@ namespace Control
             lblValorEnStock.Text = "0";
             lblValorEnStock.TextAlign = ContentAlignment.MiddleLeft;
             // 
+            // lblDetalleEnStock
+            // 
+            lblDetalleEnStock.Dock = DockStyle.Bottom;
+            lblDetalleEnStock.Font = new Font("Segoe UI", 8F);
+            lblDetalleEnStock.ForeColor = Color.FromArgb(130, 130, 150);
+            lblDetalleEnStock.Location = new Point(25, 74);
+            lblDetalleEnStock.Name = "lblDetalleEnStock";
+            lblDetalleEnStock.Size = new Size(276, 20);
+            lblDetalleEnStock.TabIndex = 2;
+            lblDetalleEnStock.Text = "-";
+            lblDetalleEnStock.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // lblTituloEnStock
+            // 
+            lblTituloEnStock.Dock = DockStyle.Top;
+            lblTituloEnStock.Font = new Font("Segoe UI Semibold", 8.5F);
+            lblTituloEnStock.ForeColor = Color.FromArgb(90, 90, 108);
+            lblTituloEnStock.Location = new Point(25, 0);
+            lblTituloEnStock.Name = "lblTituloEnStock";
+            lblTituloEnStock.Size = new Size(276, 24);
+            lblTituloEnStock.TabIndex = 3;
+            lblTituloEnStock.Text = "EN STOCK";
+            lblTituloEnStock.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // barAccentEnStock
+            // 
+            barAccentEnStock.BackColor = Color.FromArgb(74, 125, 255);
+            barAccentEnStock.Dock = DockStyle.Left;
+            barAccentEnStock.Location = new Point(20, 0);
+            barAccentEnStock.Margin = new Padding(0);
+            barAccentEnStock.Name = "barAccentEnStock";
+            barAccentEnStock.Size = new Size(5, 94);
+            barAccentEnStock.TabIndex = 4;
+            // 
             // pnlCardVencidos
             // 
             pnlCardVencidos.BackColor = Color.FromArgb(253, 240, 241);
@@ -649,48 +579,12 @@ namespace Control
             pnlCardVencidos.Controls.Add(barAccentVencidos);
             pnlCardVencidos.Cursor = Cursors.Hand;
             pnlCardVencidos.Dock = DockStyle.Fill;
-            pnlCardVencidos.Location = new Point(373, 14);
+            pnlCardVencidos.Location = new Point(373, 12);
             pnlCardVencidos.Margin = new Padding(20, 0, 20, 0);
             pnlCardVencidos.Name = "pnlCardVencidos";
             pnlCardVencidos.Padding = new Padding(20, 0, 12, 0);
             pnlCardVencidos.Size = new Size(313, 94);
             pnlCardVencidos.TabIndex = 1;
-            // 
-            // barAccentVencidos
-            // 
-            barAccentVencidos.BackColor = Color.FromArgb(214, 69, 88);
-            barAccentVencidos.Dock = DockStyle.Left;
-            barAccentVencidos.Location = new Point(0, 0);
-            barAccentVencidos.Margin = new Padding(0);
-            barAccentVencidos.Name = "barAccentVencidos";
-            barAccentVencidos.Size = new Size(5, 94);
-            barAccentVencidos.TabIndex = 4;
-            // 
-            // lblTituloVencidos
-            // 
-            lblTituloVencidos.Dock = DockStyle.Top;
-            lblTituloVencidos.Font = new Font("Segoe UI Semibold", 8.5F);
-            lblTituloVencidos.ForeColor = Color.FromArgb(90, 90, 108);
-            lblTituloVencidos.Location = new Point(25, 0);
-            lblTituloVencidos.Name = "lblTituloVencidos";
-            lblTituloVencidos.Padding = new Padding(0);
-            lblTituloVencidos.Size = new Size(276, 24);
-            lblTituloVencidos.TabIndex = 3;
-            lblTituloVencidos.Text = "VENCIDOS";
-            lblTituloVencidos.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // lblDetalleVencidos
-            // 
-            lblDetalleVencidos.Dock = DockStyle.Bottom;
-            lblDetalleVencidos.Font = new Font("Segoe UI", 8F);
-            lblDetalleVencidos.ForeColor = Color.FromArgb(130, 130, 150);
-            lblDetalleVencidos.Location = new Point(25, 52);
-            lblDetalleVencidos.Name = "lblDetalleVencidos";
-            lblDetalleVencidos.Padding = new Padding(0);
-            lblDetalleVencidos.Size = new Size(276, 20);
-            lblDetalleVencidos.TabIndex = 2;
-            lblDetalleVencidos.Text = "-";
-            lblDetalleVencidos.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // lblValorVencidos
             // 
@@ -704,6 +598,40 @@ namespace Control
             lblValorVencidos.Text = "0";
             lblValorVencidos.TextAlign = ContentAlignment.MiddleLeft;
             // 
+            // lblDetalleVencidos
+            // 
+            lblDetalleVencidos.Dock = DockStyle.Bottom;
+            lblDetalleVencidos.Font = new Font("Segoe UI", 8F);
+            lblDetalleVencidos.ForeColor = Color.FromArgb(130, 130, 150);
+            lblDetalleVencidos.Location = new Point(25, 74);
+            lblDetalleVencidos.Name = "lblDetalleVencidos";
+            lblDetalleVencidos.Size = new Size(276, 20);
+            lblDetalleVencidos.TabIndex = 2;
+            lblDetalleVencidos.Text = "-";
+            lblDetalleVencidos.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // lblTituloVencidos
+            // 
+            lblTituloVencidos.Dock = DockStyle.Top;
+            lblTituloVencidos.Font = new Font("Segoe UI Semibold", 8.5F);
+            lblTituloVencidos.ForeColor = Color.FromArgb(90, 90, 108);
+            lblTituloVencidos.Location = new Point(25, 0);
+            lblTituloVencidos.Name = "lblTituloVencidos";
+            lblTituloVencidos.Size = new Size(276, 24);
+            lblTituloVencidos.TabIndex = 3;
+            lblTituloVencidos.Text = "VENCIDOS";
+            lblTituloVencidos.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // barAccentVencidos
+            // 
+            barAccentVencidos.BackColor = Color.FromArgb(214, 69, 88);
+            barAccentVencidos.Dock = DockStyle.Left;
+            barAccentVencidos.Location = new Point(20, 0);
+            barAccentVencidos.Margin = new Padding(0);
+            barAccentVencidos.Name = "barAccentVencidos";
+            barAccentVencidos.Size = new Size(5, 94);
+            barAccentVencidos.TabIndex = 4;
+            // 
             // pnlCardEntregados
             // 
             pnlCardEntregados.BackColor = Color.FromArgb(238, 249, 242);
@@ -713,48 +641,12 @@ namespace Control
             pnlCardEntregados.Controls.Add(barAccentEntregados);
             pnlCardEntregados.Cursor = Cursors.Hand;
             pnlCardEntregados.Dock = DockStyle.Fill;
-            pnlCardEntregados.Location = new Point(727, 14);
+            pnlCardEntregados.Location = new Point(726, 12);
             pnlCardEntregados.Margin = new Padding(20, 0, 20, 0);
             pnlCardEntregados.Name = "pnlCardEntregados";
             pnlCardEntregados.Padding = new Padding(20, 0, 12, 0);
-            pnlCardEntregados.Size = new Size(313, 94);
+            pnlCardEntregados.Size = new Size(314, 94);
             pnlCardEntregados.TabIndex = 2;
-            // 
-            // barAccentEntregados
-            // 
-            barAccentEntregados.BackColor = Color.FromArgb(46, 158, 91);
-            barAccentEntregados.Dock = DockStyle.Left;
-            barAccentEntregados.Location = new Point(0, 0);
-            barAccentEntregados.Margin = new Padding(0);
-            barAccentEntregados.Name = "barAccentEntregados";
-            barAccentEntregados.Size = new Size(5, 94);
-            barAccentEntregados.TabIndex = 4;
-            // 
-            // lblTituloEntregados
-            // 
-            lblTituloEntregados.Dock = DockStyle.Top;
-            lblTituloEntregados.Font = new Font("Segoe UI Semibold", 8.5F);
-            lblTituloEntregados.ForeColor = Color.FromArgb(90, 90, 108);
-            lblTituloEntregados.Location = new Point(25, 0);
-            lblTituloEntregados.Name = "lblTituloEntregados";
-            lblTituloEntregados.Padding = new Padding(0);
-            lblTituloEntregados.Size = new Size(276, 24);
-            lblTituloEntregados.TabIndex = 3;
-            lblTituloEntregados.Text = "ENTREGADOS";
-            lblTituloEntregados.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // lblDetalleEntregados
-            // 
-            lblDetalleEntregados.Dock = DockStyle.Bottom;
-            lblDetalleEntregados.Font = new Font("Segoe UI", 8F);
-            lblDetalleEntregados.ForeColor = Color.FromArgb(130, 130, 150);
-            lblDetalleEntregados.Location = new Point(25, 52);
-            lblDetalleEntregados.Name = "lblDetalleEntregados";
-            lblDetalleEntregados.Padding = new Padding(0);
-            lblDetalleEntregados.Size = new Size(276, 20);
-            lblDetalleEntregados.TabIndex = 2;
-            lblDetalleEntregados.Text = "-";
-            lblDetalleEntregados.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // lblValorEntregados
             // 
@@ -763,10 +655,121 @@ namespace Control
             lblValorEntregados.ForeColor = Color.FromArgb(31, 31, 58);
             lblValorEntregados.Location = new Point(25, 24);
             lblValorEntregados.Name = "lblValorEntregados";
-            lblValorEntregados.Size = new Size(276, 50);
+            lblValorEntregados.Size = new Size(277, 50);
             lblValorEntregados.TabIndex = 1;
             lblValorEntregados.Text = "0";
             lblValorEntregados.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // lblDetalleEntregados
+            // 
+            lblDetalleEntregados.Dock = DockStyle.Bottom;
+            lblDetalleEntregados.Font = new Font("Segoe UI", 8F);
+            lblDetalleEntregados.ForeColor = Color.FromArgb(130, 130, 150);
+            lblDetalleEntregados.Location = new Point(25, 74);
+            lblDetalleEntregados.Name = "lblDetalleEntregados";
+            lblDetalleEntregados.Size = new Size(277, 20);
+            lblDetalleEntregados.TabIndex = 2;
+            lblDetalleEntregados.Text = "-";
+            lblDetalleEntregados.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // lblTituloEntregados
+            // 
+            lblTituloEntregados.Dock = DockStyle.Top;
+            lblTituloEntregados.Font = new Font("Segoe UI Semibold", 8.5F);
+            lblTituloEntregados.ForeColor = Color.FromArgb(90, 90, 108);
+            lblTituloEntregados.Location = new Point(25, 0);
+            lblTituloEntregados.Name = "lblTituloEntregados";
+            lblTituloEntregados.Size = new Size(277, 24);
+            lblTituloEntregados.TabIndex = 3;
+            lblTituloEntregados.Text = "ENTREGADOS";
+            lblTituloEntregados.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // barAccentEntregados
+            // 
+            barAccentEntregados.BackColor = Color.FromArgb(46, 158, 91);
+            barAccentEntregados.Dock = DockStyle.Left;
+            barAccentEntregados.Location = new Point(20, 0);
+            barAccentEntregados.Margin = new Padding(0);
+            barAccentEntregados.Name = "barAccentEntregados";
+            barAccentEntregados.Size = new Size(5, 94);
+            barAccentEntregados.TabIndex = 4;
+            // 
+            // pnlFilters
+            // 
+            pnlFilters.BackColor = Color.White;
+            pnlFilters.Controls.Add(txtBuscar);
+            pnlFilters.Controls.Add(labelFiltroBuscar);
+            pnlFilters.Controls.Add(cmbEstado);
+            pnlFilters.Controls.Add(labelFiltroEstado);
+            pnlFilters.Controls.Add(cmbDeposito);
+            pnlFilters.Controls.Add(labelFiltroDeposito);
+            pnlFilters.Dock = DockStyle.Top;
+            pnlFilters.Location = new Point(220, 340);
+            pnlFilters.Name = "pnlFilters";
+            pnlFilters.Size = new Size(1060, 50);
+            pnlFilters.TabIndex = 3;
+            // 
+            // txtBuscar
+            // 
+            txtBuscar.Font = new Font("Segoe UI", 9F);
+            txtBuscar.Location = new Point(642, 13);
+            txtBuscar.Name = "txtBuscar";
+            txtBuscar.PlaceholderText = "Serie o código...";
+            txtBuscar.Size = new Size(300, 23);
+            txtBuscar.TabIndex = 5;
+            // 
+            // labelFiltroBuscar
+            // 
+            labelFiltroBuscar.AutoSize = true;
+            labelFiltroBuscar.Font = new Font("Segoe UI", 9F);
+            labelFiltroBuscar.ForeColor = Color.FromArgb(90, 90, 108);
+            labelFiltroBuscar.Location = new Point(574, 17);
+            labelFiltroBuscar.Name = "labelFiltroBuscar";
+            labelFiltroBuscar.Size = new Size(45, 15);
+            labelFiltroBuscar.TabIndex = 4;
+            labelFiltroBuscar.Text = "Buscar:";
+            // 
+            // cmbEstado
+            // 
+            cmbEstado.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbEstado.Font = new Font("Segoe UI", 9F);
+            cmbEstado.FormattingEnabled = true;
+            cmbEstado.Location = new Point(356, 13);
+            cmbEstado.Name = "cmbEstado";
+            cmbEstado.Size = new Size(190, 23);
+            cmbEstado.TabIndex = 3;
+            // 
+            // labelFiltroEstado
+            // 
+            labelFiltroEstado.AutoSize = true;
+            labelFiltroEstado.Font = new Font("Segoe UI", 9F);
+            labelFiltroEstado.ForeColor = Color.FromArgb(90, 90, 108);
+            labelFiltroEstado.Location = new Point(290, 17);
+            labelFiltroEstado.Name = "labelFiltroEstado";
+            labelFiltroEstado.Size = new Size(45, 15);
+            labelFiltroEstado.TabIndex = 2;
+            labelFiltroEstado.Text = "Estado:";
+            // 
+            // cmbDeposito
+            // 
+            cmbDeposito.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbDeposito.Font = new Font("Segoe UI", 9F);
+            cmbDeposito.FormattingEnabled = true;
+            cmbDeposito.Location = new Point(102, 13);
+            cmbDeposito.Name = "cmbDeposito";
+            cmbDeposito.Size = new Size(160, 23);
+            cmbDeposito.TabIndex = 1;
+            // 
+            // labelFiltroDeposito
+            // 
+            labelFiltroDeposito.AutoSize = true;
+            labelFiltroDeposito.Font = new Font("Segoe UI", 9F);
+            labelFiltroDeposito.ForeColor = Color.FromArgb(90, 90, 108);
+            labelFiltroDeposito.Location = new Point(30, 17);
+            labelFiltroDeposito.Name = "labelFiltroDeposito";
+            labelFiltroDeposito.Size = new Size(57, 15);
+            labelFiltroDeposito.TabIndex = 0;
+            labelFiltroDeposito.Text = "Depósito:";
             // 
             // FrmReporteBernafon
             // 
@@ -791,15 +794,11 @@ namespace Control
             panel10.PerformLayout();
             panel8.ResumeLayout(false);
             panel9.ResumeLayout(false);
-            panel9.PerformLayout();
             pnlCards.ResumeLayout(false);
             tlpCards.ResumeLayout(false);
             pnlCardEnStock.ResumeLayout(false);
-            pnlCardEnStock.PerformLayout();
             pnlCardVencidos.ResumeLayout(false);
-            pnlCardVencidos.PerformLayout();
             pnlCardEntregados.ResumeLayout(false);
-            pnlCardEntregados.PerformLayout();
             pnlFilters.ResumeLayout(false);
             pnlFilters.PerformLayout();
             ResumeLayout(false);
@@ -828,6 +827,7 @@ namespace Control
         private ToolTip toolTip1;
         private DataGridViewTextBoxColumn colSerial;
         private DataGridViewTextBoxColumn colCode;
+        private DataGridViewTextBoxColumn colDescripcion;
         private DataGridViewTextBoxColumn colDepot;
         private DataGridViewTextBoxColumn colFecha;
         private DataGridViewTextBoxColumn colDias;
